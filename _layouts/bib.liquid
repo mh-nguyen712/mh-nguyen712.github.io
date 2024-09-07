@@ -362,5 +362,19 @@
         <div style="text-align: center;">{% include video.liquid path=entry.video class="img-fluid rounded z-depth-1" controls=true %}</div>
       </div>
     {% endif %}
+    {% if entry.html_embed %}
+      <!-- Define the directory path -->
+      {% assign directory = 'publication/' %}
+
+      <!-- Construct the full file path by prepending the directory to the entry.html_embed value -->
+      {% assign full_path = directory | append: entry.html_embed %}
+
+      <div class="html embedding">
+        <div style="text-align: center;">
+          <!-- Include the file using the constructed path -->
+          {% include {{ full_path }} %}
+        </div>
+      </div>
+    {% endif %}
   </div>
 </div>

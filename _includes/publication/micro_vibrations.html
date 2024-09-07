@@ -1,113 +1,122 @@
 <!-- <!DOCTYPE html> -->
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Interactive Image Comparison Slider</title>
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
 
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            /* background-color: #f4f4f4; */
-        }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        /* background-color: #f4f4f4; */
+      }
 
-        .image-slider {
-            position: relative;
-            width: 600px; /* Adjust this size as needed */
-            height: 600px;
-            overflow: hidden;
-            font-family: Arial, sans-serif;
-        }
+      .image-slider {
+        position: relative;
+        width: 500px; /* Adjust this size as needed */
+        height: 500px;
+        overflow: hidden;
+        font-family: Arial, sans-serif;
+      }
 
-        .image-slider img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+      .image-slider img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
 
-        .image-slider .img2 {
-            clip-path: inset(0 50% 0 0);
-        }
+      .image-slider .img2 {
+        clip-path: inset(0 50% 0 0);
+      }
 
-        .slider {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            width: 3px;
-            background-color: #fff;
-            cursor: ew-resize;
-            z-index: 10;
-        }
+      .slider {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        width: 3px;
+        background-color: #fff;
+        cursor: ew-resize;
+        z-index: 10;
+      }
 
-        /* Styling the Before and After labels */
-        .label {
-            position: absolute;
-            bottom: 5px;
-            left: 5px;
-            color: #fff;
-            background-color: rgba(var(--text-color-rgb), 0.7); /* 70% opacity */
-            padding: 5px;
-            border-radius: 5px;
-            font-size: 18px;
-            z-index: 11;
-        }
+      /* Styling the Before and After labels */
+      .label {
+        position: absolute;
+        bottom: 0px;
+        left: 5px;
+        color: #fff;
+        background-color: rgba(var(--text-color-rgb), 0.7); /* 70% opacity */
+        padding: 0px;
+        border-radius: 5px;
+        font-size: 18px;
+        z-index: 11;
+      }
 
-        .label-after {
-            left: auto;
-            right: 20px;
-        }
+      .label-after {
+        left: auto;
+        right: 5px;
+      }
+
+      .image-caption {
+        display: flex;
+        justify-content: flex-start;
+        font-size: 11px; /* Smaller text size */
+        color: var(--text-color); /* Change caption color */
+        margin-top: 5px;
+      }
     </style>
-</head>
-<body>
-
+  </head>
+  <body>
     <div class="image-slider" id="slider-container">
-        <img src="/assets/img/micro_vibration_preview/reconstruction_x2_att_upsample.png" alt="Image 1">
-        <div class="label">Vibrated</div>
-        <img src="/assets/img/micro_vibration_preview/vibrated_1024.png" alt="Image 2" class="img2">
-        <div class="label label-after">Reconstruction</div>
-        <div class="slider" id="slider-bar"></div>
+      <img src="/assets/img/micro_vibration_preview/reconstruction_x2_att_upsample.png" alt="Image 1" />
+      <div class="label">Vibrated</div>
+      <img src="/assets/img/micro_vibration_preview/vibrated_1024.png" alt="Image 2" class="img2" />
+      <div class="label label-after">Reconstruction</div>
+      <div class="slider" id="slider-bar"></div>
     </div>
-
+    <div class="image-caption">
+      <div>Reconstruction example. Image from Sentinel-2B satellite.</div>
+    </div>
     <script>
-        const sliderContainer = document.getElementById('slider-container');
-        const sliderBar = document.getElementById('slider-bar');
-        const img2 = document.querySelector('.img2');
+      const sliderContainer = document.getElementById("slider-container");
+      const sliderBar = document.getElementById("slider-bar");
+      const img2 = document.querySelector(".img2");
 
-        sliderBar.addEventListener('mousedown', startSlide);
+      sliderBar.addEventListener("mousedown", startSlide);
 
-        function startSlide(e) {
-            window.addEventListener('mousemove', slide);
-            window.addEventListener('mouseup', stopSlide);
-        }
+      function startSlide(e) {
+        window.addEventListener("mousemove", slide);
+        window.addEventListener("mouseup", stopSlide);
+      }
 
-        function slide(e) {
-            let rect = sliderContainer.getBoundingClientRect();
-            let offsetX = e.clientX - rect.left;
+      function slide(e) {
+        let rect = sliderContainer.getBoundingClientRect();
+        let offsetX = e.clientX - rect.left;
 
-            if (offsetX < 0) offsetX = 0;
-            if (offsetX > rect.width) offsetX = rect.width;
+        if (offsetX < 0) offsetX = 0;
+        if (offsetX > rect.width) offsetX = rect.width;
 
-            let percentage = (offsetX / rect.width) * 100;
-            sliderBar.style.left = percentage + '%';
-            img2.style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
-        }
+        let percentage = (offsetX / rect.width) * 100;
+        sliderBar.style.left = percentage + "%";
+        img2.style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
+      }
 
-        function stopSlide() {
-            window.removeEventListener('mousemove', slide);
-            window.removeEventListener('mouseup', stopSlide);
-        }
+      function stopSlide() {
+        window.removeEventListener("mousemove", slide);
+        window.removeEventListener("mouseup", stopSlide);
+      }
     </script>
-</body>
+  </body>
 </html>

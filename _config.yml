@@ -328,7 +328,6 @@ scholar:
 
   details_dir: bibliography
   details_link: Details
-
   query: "@*"
   group_by: year
   group_order: descending
@@ -357,6 +356,7 @@ filtered_bibtex_keywords:
     code,
     google_scholar_id,
     html,
+    html_embed,
     inspirehep_id,
     pdf,
     poster,
