@@ -16,5 +16,7 @@ nav_order: 2
 <div class="publications">
 
 {% bibliography %}
+{% include publication/micro_vibrations.html %}
+
 
 </div>
