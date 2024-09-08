@@ -23,7 +23,6 @@ vendor
 __pycache__
 .dist 
 .vscode 
-*.png
 *.pth
 *.pt
 *.bbl 
