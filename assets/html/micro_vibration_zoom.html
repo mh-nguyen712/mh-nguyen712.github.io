@@ -8,7 +8,7 @@
         box-sizing: border-box;
         margin: 0;
         padding: 0;
-    }
+      }
 
       body {
         display: flex;
@@ -19,7 +19,6 @@
         padding: 0;
         flex-direction: column;
         background-color: gray; /* Change background color to gray */
-
       }
 
       .container {
@@ -126,61 +125,40 @@
       }
 
       .image-caption {
-            font-size: 20px; /* Adjust the font size as needed */
-            font-weight: bold;
-            text-align: center;
-            margin-bottom: 20px;
-        }
+        font-size: 20px; /* Adjust the font size as needed */
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 20px;
+      }
     </style>
   </head>
   <body>
     <div class="image-caption">
-        <div>Reconstruction example. Image from Sentinel-2B satellite.</div> 
+      <div>Reconstruction example. Image from Sentinel-2B satellite.</div>
     </div>
     <div class="container">
-        
-        <div class="image-slider" id="slider-container">
-            <img
-            src="/assets/img/publication_preview/micro_vibaration_reconstruction_x2_att_upsample.png"
-            alt="Image 1"
-            class="img1"
-            id="img1"
-            />
-            <div class="label">Vibrated</div>
-            <img
-            src="/assets/img/publication_preview/micro_vibration_vibrated_1024.png"
-            alt="Image 2"
-            class="img2"
-            id="img2"
-            />
-            <div class="label label-after">Reconstruction</div>
-            <div class="slider" id="slider-bar"></div>
-        </div>
-        <!-- <div style="display: inline-block;"> TEXT </div> -->
+      <div class="image-slider" id="slider-container">
+        <img src="/assets/img/publication_preview/micro_vibaration_reconstruction_x2_att_upsample.png" alt="Image 1" class="img1" id="img1" />
+        <div class="label">Vibrated</div>
+        <img src="/assets/img/publication_preview/micro_vibration_vibrated_1024.png" alt="Image 2" class="img2" id="img2" />
+        <div class="label label-after">Reconstruction</div>
+        <div class="slider" id="slider-bar"></div>
+      </div>
+      <!-- <div style="display: inline-block;"> TEXT </div> -->
       <!-- Zoom slider container -->
-        <div class="zoom-slider-container">
-            <input
-            type="range"
-            min="1"
-            max="10"
-            value="1"
-            step="0.1"
-            id="zoom-slider"
-            class="zoom-slider"
-            />
-            <span>Zoom</span>
-            <div class="move-buttons">
-            <button id="move-up">Up</button>
-            <button id="move-left">Left</button>
-            <button id="move-right">Right</button>
-            <button id="move-down">Down</button>
-            <button id="center-button">Center</button> 
-            </div>
+      <div class="zoom-slider-container">
+        <input type="range" min="1" max="10" value="1" step="0.1" id="zoom-slider" class="zoom-slider" />
+        <span>Zoom</span>
+        <div class="move-buttons">
+          <button id="move-up">Up</button>
+          <button id="move-left">Left</button>
+          <button id="move-right">Right</button>
+          <button id="move-down">Down</button>
+          <button id="center-button">Center</button>
         </div>
+      </div>
     </div>
 
-
-    
     <script>
       const sliderContainer = document.getElementById("slider-container");
       const sliderBar = document.getElementById("slider-bar");
@@ -202,8 +180,6 @@
       let offsetX = 0;
       let offsetY = 0;
 
-
-    
       // Handle zoom with the slider on the right
       zoomSlider.addEventListener("input", function () {
         zoomLevel = zoomSlider.value;
@@ -213,10 +189,10 @@
       // Update image transformations based on zoom level and offsets
       function updateImageTransforms() {
         let rect = sliderContainer.getBoundingClientRect();
-        let percentage = (offsetX / rect.width) * 100 ;
+        let percentage = (offsetX / rect.width) * 100;
         img1.style.transform = `scale(${zoomLevel}) translate(${offsetX}px, ${offsetY}px)`;
         img2.style.transform = `scale(${zoomLevel}) translate(${offsetX}px, ${offsetY}px)`;
-        sliderBar.style.left = `50%`
+        sliderBar.style.left = `50%`;
         img2.style.clipPath = `inset(0 ${50 + percentage}% 0 0)`;
       }
 
