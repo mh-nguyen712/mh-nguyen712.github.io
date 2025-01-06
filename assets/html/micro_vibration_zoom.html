@@ -1,0 +1,261 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive Image Comparison Slider with Zoom</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+        flex-direction: column;
+        background-color: gray; /* Change background color to gray */
+
+      }
+
+      .container {
+        display: flex;
+        /* flex-direction: row; */
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        max-width: 600px;
+      }
+
+      .image-slider {
+        position: relative;
+        width: 500px;
+        height: 500px;
+        overflow: hidden;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      .image-slider img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.2s ease;
+        cursor: grab;
+      }
+
+      .image-slider .img2 {
+        clip-path: inset(0 50% 0 0);
+      }
+
+      .slider {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        width: 3px;
+        background-color: #fff;
+        cursor: ew-resize;
+        z-index: 10;
+      }
+
+      .label {
+        position: absolute;
+        bottom: 0;
+        left: 5px;
+        color: #fff;
+        background-color: rgba(var(--text-color-rgb), 0.7);
+        padding: 0px;
+        border-radius: 5px;
+        font-size: 18px;
+        z-index: 11;
+      }
+
+      .label-after {
+        left: auto;
+        right: 5px;
+      }
+
+      .image-caption {
+        display: flex;
+        justify-content: flex-start;
+        font-size: 11px;
+        color: var(--text-color);
+        margin-top: 5px;
+      }
+
+      .zoom-slider-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 500px;
+        /* width: 90px; */
+      }
+
+      .zoom-slider {
+        writing-mode: bt-lr; /* Vertical slider */
+        width: 15px;
+        height: 300px;
+        margin-right: 10px;
+        -webkit-appearance: slider-vertical;
+      }
+
+      .move-buttons {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        margin-top: 10px;
+      }
+
+      .move-buttons button {
+        padding: 5px 10px;
+        cursor: pointer;
+      }
+
+      .dragging {
+        cursor: grabbing;
+      }
+
+      .image-caption {
+            font-size: 20px; /* Adjust the font size as needed */
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="image-caption">
+        <div>Reconstruction example. Image from Sentinel-2B satellite.</div> 
+    </div>
+    <div class="container">
+        
+        <div class="image-slider" id="slider-container">
+            <img
+            src="/assets/img/publication_preview/micro_vibaration_reconstruction_x2_att_upsample.png"
+            alt="Image 1"
+            class="img1"
+            id="img1"
+            />
+            <div class="label">Vibrated</div>
+            <img
+            src="/assets/img/publication_preview/micro_vibration_vibrated_1024.png"
+            alt="Image 2"
+            class="img2"
+            id="img2"
+            />
+            <div class="label label-after">Reconstruction</div>
+            <div class="slider" id="slider-bar"></div>
+        </div>
+        <!-- <div style="display: inline-block;"> TEXT </div> -->
+      <!-- Zoom slider container -->
+        <div class="zoom-slider-container">
+            <input
+            type="range"
+            min="1"
+            max="10"
+            value="1"
+            step="0.1"
+            id="zoom-slider"
+            class="zoom-slider"
+            />
+            <span>Zoom</span>
+            <div class="move-buttons">
+            <button id="move-up">Up</button>
+            <button id="move-left">Left</button>
+            <button id="move-right">Right</button>
+            <button id="move-down">Down</button>
+            <button id="center-button">Center</button> 
+            </div>
+        </div>
+    </div>
+
+
+    
+    <script>
+      const sliderContainer = document.getElementById("slider-container");
+      const sliderBar = document.getElementById("slider-bar");
+      const img1 = document.getElementById("img1");
+      const img2 = document.getElementById("img2");
+      const zoomSlider = document.getElementById("zoom-slider");
+
+      const moveUpBtn = document.getElementById("move-up");
+      const moveDownBtn = document.getElementById("move-down");
+      const moveLeftBtn = document.getElementById("move-left");
+      const moveRightBtn = document.getElementById("move-right");
+      const centerBtn = document.getElementById("center-button");
+
+      let zoomLevel = 1;
+      let isDragging = false;
+      let isOverSlider = false;
+
+      // Initial offsets for image translation
+      let offsetX = 0;
+      let offsetY = 0;
+
+
+    
+      // Handle zoom with the slider on the right
+      zoomSlider.addEventListener("input", function () {
+        zoomLevel = zoomSlider.value;
+        updateImageTransforms();
+      });
+
+      // Update image transformations based on zoom level and offsets
+      function updateImageTransforms() {
+        let rect = sliderContainer.getBoundingClientRect();
+        let percentage = (offsetX / rect.width) * 100 ;
+        img1.style.transform = `scale(${zoomLevel}) translate(${offsetX}px, ${offsetY}px)`;
+        img2.style.transform = `scale(${zoomLevel}) translate(${offsetX}px, ${offsetY}px)`;
+        sliderBar.style.left = `50%`
+        img2.style.clipPath = `inset(0 ${50 + percentage}% 0 0)`;
+      }
+
+      // Move images with buttons when zoomed
+      function moveImages(xMove, yMove) {
+        offsetX += xMove;
+        offsetY += yMove;
+        updateImageTransforms();
+      }
+
+      moveUpBtn.addEventListener("click", function () {
+        moveImages(0, -15); // Move up
+      });
+
+      moveDownBtn.addEventListener("click", function () {
+        moveImages(0, 15); // Move down
+      });
+
+      moveLeftBtn.addEventListener("click", function () {
+        moveImages(-15, 0); // Move left
+      });
+
+      moveRightBtn.addEventListener("click", function () {
+        moveImages(15, 0); // Move right
+      });
+
+      // Center the images when the center button is pressed
+      centerBtn.addEventListener("click", function () {
+        offsetX = 0;
+        offsetY = 0;
+        updateImageTransforms();
+      });
+
+      // Prevent images from moving when the vertical comparison slider is used
+      sliderContainer.addEventListener("mousemove", function (e) {
+        if (!isOverSlider) {
+          // Images stay fixed when not over slider, only slider moves
+        }
+      });
+    </script>
+  </body>
+</html>
