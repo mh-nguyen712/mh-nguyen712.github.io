@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: <a href='#'>First year PhD student</a>.
+subtitle: <a href='#'>Second year PhD candidate</a>.
 
 profile:
   align: right

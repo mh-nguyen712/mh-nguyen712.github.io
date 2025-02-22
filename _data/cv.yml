@@ -33,6 +33,12 @@
       description:
         - Micro-vibrations in satellite imaging with pushbroom cameras
 
+    - title: Research Intern
+      institution: Institut de Mathématiques de Toulouse
+      year: 2022
+      description:
+        - Product-convolution expansion and applications to deconvolution
+
 - title: Open Source Projects
   type: time_table
   contents:
