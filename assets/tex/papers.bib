@@ -27,3 +27,27 @@ Our results highlight the critical role of the focal plane’s
 geometry, to improve the micro-vibrations identifiability
 and therefore, the reconstruction quality.}}
 
+@article{nguyen2024pnp-unrolled,
+  title={Comparing Plug-and-Play and Unrolled networks},
+  author={Nguyen, Minh Hai and Weiss, Pierre},
+  year={2024},
+  journal={Pre-print},
+  pdf=pub_pnp_unrolled.pdf,
+  abstract={Plug-and-play and unrolled methods are among
+  the most popular and efficient approaches for solving inverse
+  problems in imaging. In this paper, we review their similarities
+  and differences. We adopt a Bayesian framework to explain
+  their statistical properties. This allows us to relate plug-and-play methods to Maximum A Posteriori (MAP) estimators and
+  unrolled networks to Minimum Mean Square Error (MMSE)
+  estimators. We clarify some of their properties including their
+  stability and numerical efficiency. Overall, this paper provides a
+  concise review of their respective advantages and limitations.},
+}
+
+@article{nguyen2024diffusion-map,
+  title={How Diffusion Prior Landscapes Shape the Posterior in Blind Deconvolution},
+  author={Nguyen, Minh Hai and Pauwels, Edouard and Weiss, Pierre},
+  year={2024},
+  journal={Pre-print},
+  abstract={The Maximum A Posteriori (MAP) estimation is a widely used framework in blind deconvolution. The estimated image and blur filter are defined as the maximizer of the posterior distribution. However, when paired with sparsity-promoting image priors, MAP estimation has been shown to favor blurry solutions, limiting its effectiveness. In this paper, we revisit this result using diffusion-based priors, a class of models that capture realistic image distributions. Through an empirical examination of the prior’s likelihood landscape, we uncover two key properties: first, blurry images tend to have higher likelihoods; second, the landscape contains numerous local minimizers that correspond to natural images. Building on these insights, we provide a theoretical analysis of the blind deblurring posterior. This reveals that the MAP estimator fails to recover sharp images: it tends to produce sharp filters (close to the Dirac delta function) and blurry solutions. However, local minimizers of the posterior, which can be obtained with gradient descents correspond to realistic, natural images, effectively solving the blind deconvolution problem. Our findings suggest that overcoming MAP’s limitations requires good local initialization to local minima in the posterior landscape. We validate our analysis with numerical experiments, demonstrating the practical implications of our insights for designing improved priors and optimization techniques.},
+}
