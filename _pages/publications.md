@@ -2,7 +2,7 @@
 layout: page
 permalink: /publications/
 title: publications and talks
-description: Hear is the list of my publications and talks/presentations
+description: Below is the list of my publications and talks/presentations
 nav: true
 nav_order: 2
 ---
@@ -12,19 +12,18 @@ nav_order: 2
 ## Publications
 
 <div class="publications">
-
-{% bibliography %}
-
+    {% bibliography %}
 </div>
 
 ## Posters
 
 <div class="publications">
-    {% bibliography --file posters.bib%} 
+    {% bibliography --file posters.bib %} 
 </div>
+
 
 ## Talks
 
 <div class="publications">
-    {% bibliography --file talks.bib%}
+    {% bibliography --file talks.bib %}
 </div>
