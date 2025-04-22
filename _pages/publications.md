@@ -17,10 +17,14 @@ nav_order: 2
 
 </div>
 
+## Posters
+
+<div class="publications">
+    {% bibliography --file posters.bib%} 
+</div>
+
 ## Talks
 
 <div class="publications">
-
-{% bibliography --file talks.bib%}
-
+    {% bibliography --file talks.bib%}
 </div>
