@@ -53,3 +53,34 @@ and therefore, the reconstruction quality.},
   abbr={preprint},
   bibtex_show={true},
 }
+
+
+@misc{nguyen2025diffusionpriorlandscapesshape,
+      title={How Diffusion Prior Landscapes Shape the Posterior in Blind Deconvolution}, 
+      author={Minh-Hai Nguyen and Edouard Pauwels and Pierre Weiss},
+      year={2025},
+      eprint={2508.02923},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      abstract={The Maximum A Posteriori (MAP) estimation is a widely used framework in blind deconvolution to
+          recover sharp images from blurred observations. The estimated image and blur filter are defined as
+          the maximizer of the posterior distribution. However, when paired with sparsity-promoting image
+          priors, MAP estimation has been shown to favors blurry solutions, limiting its effectiveness. In this
+          paper, we revisit this result using diffusion-based priors, a class of models that capture realistic image
+          distributions. Through an empirical examination of the prior's likelihood landscape, we uncover two
+          key properties: first, blurry images tend to have higher likelihoods; second, the landscape contains
+          numerous local minimizers that correspond to natural images. Building on these insights, we provide
+          a theoretical analysis of the blind deblurring posterior. This reveals that the MAP estimator tends to
+          produce sharp filters (close to the Dirac delta function) and blurry solutions. However local minimizers
+          of the posterior, which can be obtained with gradient descent, correspond to realistic, natural images,
+          effectively solving the blind deconvolution problem. Our findings suggest that overcoming MAP's
+          limitations requires good local initialization to local minima in the posterior landscape. We validate
+          our analysis with numerical experiments, demonstrating the practical implications of our insights for
+          designing improved priors and optimization techniques.
+      },
+      url={https://arxiv.org/abs/2508.02923},
+      pdf={https://www.arxiv.org/pdf/2508.02923},
+	  bibtex_show={true},
+	  abbr={arxiv},
+	  preview={kohler_deblurred.gif},
+}

@@ -21,7 +21,6 @@ nav_order: 2
     {% bibliography --file posters.bib %} 
 </div>
 
-
 ## Talks
 
 <div class="publications">
