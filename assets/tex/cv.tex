@@ -6,6 +6,7 @@
 %	FONT BASICS
 %----------------------------------------------------------------------------------------
 
+
 % some tex-live fonts - choose your own
 
 %\usepackage[defaultsans]{droidsans}
@@ -105,7 +106,7 @@
 % \usepackage[backend=bibtex,style=numeric]{biblatex}
 \usepackage[backend=biber,
            bibstyle=numeric,sorting=ydnt,sortcites=true,natbib=true,defernumbers=true,
-           maxbibnames=99,giveninits=true,uniquename=false]{biblatex}
+           maxbibnames=4,giveninits=true,uniquename=false]{biblatex}
 \addbibresource{papers.bib}
 
 %----------------------------------------------------------------------------------------
@@ -344,9 +345,11 @@
             \iconemail{Github}{14}{https://mh-nguyen712.github.io}{https://mh-nguyen712.github.io/}{black} 
             \iconemail{Phone}{14}{+33 7 69 60 25 04}{+33 7 69 60 25 04}{black}
         } \\ [3pt]
-        \textcolor{white}{ \rule{\textwidth}{1pt} } \\ [3pt]
-
-		\normalsize{ \textcolor{white} {I am a second-year PhD candidate in MAMBO team at Toulouse university (expected graduation: Dec. 2026), advised by \href{https://www.math.univ-toulouse.fr/~weiss/}{Prof. Pierre Weiss} and \href{https://edouardpauwels.fr/}{Prof. Edouard Pauwels}. My research explores generative models for inverse problems in imaging, with applications in microscopy. }}
+        \textcolor{white}{ \rule{\textwidth}{1pt} } %\\ [3pt]
+		\vskip -0.1in
+		\normalsize{ \textcolor{white} {I am a 3rd-year PhD candidate in MAMBO team at Toulouse university (expected graduation: Dec. 2026), advised by \href{https://www.math.univ-toulouse.fr/~weiss/}{Prof. Pierre Weiss} and \href{https://edouardpauwels.fr/}{Prof. Edouard Pauwels}.
+		My research focuses on computational imaging with deep learning and generative models. 
+		I also actively contribute to open-source software.}}
 	\end {center}
 \end{minipage}}
 
@@ -399,6 +402,7 @@
 %	PUBLICATION
 %----------------------------------------------------------------------------------------
 \cvsection{Publications}
+% \bibliographystyle{abbrv}
 \nocite{*}
 \printbibliography[heading=none]
 

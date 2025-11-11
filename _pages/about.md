@@ -18,5 +18,6 @@ selected_papers: false # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
 ---
 
-I'm currently a PhD student in Image Processing and Applied Mathematics at the University of Toulouse, France.
-I'm under the supervision of [Prof. Pierre Weiss](https://www.math.univ-toulouse.fr/~weiss/) and [Prof. Edouard Pauwels](https://edouardpauwels.fr/)
+I'm currently a 3rd year PhD student in Image Processing and Applied Mathematics at the University of Toulouse, France.
+I'm under the supervision of [Prof. Pierre Weiss](https://www.math.univ-toulouse.fr/~weiss/) and [Prof. Edouard Pauwels](https://edouardpauwels.fr/).
+My research focuses on inverse problems and computational imaging, particularly for microscopy. I also explore diffusion models and actively contribute to open‑source software.
