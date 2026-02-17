@@ -44,25 +44,35 @@ and therefore, the reconstruction quality.}}
   concise review of their respective advantages and limitations.},
 }
 
-@article{nguyen2024diffusion-map,
-  title={How Diffusion Prior Landscapes Shape the Posterior in Blind Deconvolution},
-  author={Nguyen, Minh Hai and Pauwels, Edouard and Weiss, Pierre},
-  year={2024},
-  journal={Pre-print},
-  abstract={The Maximum A Posteriori (MAP) estimation is a widely used framework in blind deconvolution. The estimated image and blur filter are defined as the maximizer of the posterior distribution. However, when paired with sparsity-promoting image priors, MAP estimation has been shown to favor blurry solutions, limiting its effectiveness. In this paper, we revisit this result using diffusion-based priors, a class of models that capture realistic image distributions. Through an empirical examination of the prior’s likelihood landscape, we uncover two key properties: first, blurry images tend to have higher likelihoods; second, the landscape contains numerous local minimizers that correspond to natural images. Building on these insights, we provide a theoretical analysis of the blind deblurring posterior. This reveals that the MAP estimator fails to recover sharp images: it tends to produce sharp filters (close to the Dirac delta function) and blurry solutions. However, local minimizers of the posterior, which can be obtained with gradient descents correspond to realistic, natural images, effectively solving the blind deconvolution problem. Our findings suggest that overcoming MAP’s limitations requires good local initialization to local minima in the posterior landscape. We validate our analysis with numerical experiments, demonstrating the practical implications of our insights for designing improved priors and optimization techniques.},
+@misc{nguyen2025diffusionpriorlandscapesshape,
+      title={How Diffusion Prior Landscapes Shape the Posterior in Blind Deconvolution}, 
+      author={Minh-Hai Nguyen and Edouard Pauwels and Pierre Weiss},
+      year={2025},
+      eprint={2508.02923},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2508.02923}, 
 }
 
-@misc{tachella2025deepinversepythonpackagesolving,
-      title={DeepInverse: A Python package for solving imaging inverse problems with deep learning}, 
-      author={Julián Tachella and Matthieu Terris and Samuel Hurault and Andrew Wang and Dongdong Chen and Minh-Hai Nguyen and Maxime Song and Thomas Davies and Leo Davy and Jonathan Dong and Paul Escande and Johannes Hertrich and Zhiyuan Hu and Tobías I. Liaudat and Nils Laurent and Brett Levac and Mathurin Massias and Thomas Moreau and Thibaut Modrzyk and Brayan Monroy and Sebastian Neumayer and Jérémy Scanvic and Florian Sarron and Victor Sechaud and Georg Schramm and Romain Vo and Pierre Weiss},
-      abstract={DeepInverse is an open-source PyTorch-based library for solving imaging inverse problems.
-          The library covers all crucial steps in image reconstruction from the efficient implementation of
-          forward operators (e.g., optics, MRI, tomography), to the definition and resolution of variational
-          problems and the design and training of advanced neural network architectures. In this paper,
-          we describe the main functionality of the library and discuss the main design choices.},
-      year={2025},
-      eprint={2505.20160},
+@article{tachella2025deepinverse,
+    title = {DeepInverse: A Python package for solving imaging inverse problems with deep learning},
+    journal = {Journal of Open Source Software},
+    doi = {10.21105/joss.08923},
+    url = {https://doi.org/10.21105/joss.08923},
+    year = {2025},
+    publisher = {The Open Journal},
+    volume = {10},
+    number = {115},
+    pages = {8923},
+    author = {Tachella, Julián and Terris, Matthieu and Hurault, Samuel and Wang, Andrew and Davy, Leo and Scanvic, Jérémy and Sechaud, Victor and Vo, Romain and Moreau, Thomas and Davies, Thomas and Chen, Dongdong and Laurent, Nils and Monroy, Brayan and Dong, Jonathan and Hu, Zhiyuan and Nguyen, Minh-Hai and Sarron, Florian and Weiss, Pierre and Escande, Paul and Massias, Mathurin and Modrzyk, Thibaut and Levac, Brett and Liaudat, Tobías I. and Song, Maxime and Hertrich, Johannes and Neumayer, Sebastian and Schramm, Georg},
+}
+
+@misc{nguyen2026analytictheoryconvolutionalneural,
+      title={An analytic theory of convolutional neural network inverse problems solvers}, 
+      author={Minh Hai Nguyen and Quoc Bao Do and Edouard Pauwels and Pierre Weiss},
+      year={2026},
+      eprint={2601.10334},
       archivePrefix={arXiv},
-      primaryClass={eess.IV},
-      pdf={https://arxiv.org/abs/2505.20160},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2601.10334}, 
 }
