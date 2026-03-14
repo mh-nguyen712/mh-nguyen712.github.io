@@ -2,11 +2,11 @@
 layout: about
 title: about
 permalink: /
-subtitle: <a href='#'>Second year PhD candidate</a>.
+subtitle: <a href='#'>Last year PhD candidate</a>.
 
 profile:
   align: right
-  image: avatar.jpg
+  image: avatar_2.jpeg
   image_circular: true # crops the image to make it circular
   more_info: >
     <p>Office 2031</p>

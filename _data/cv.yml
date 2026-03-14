@@ -2,72 +2,149 @@
   type: map
   contents:
     - name: Full Name
-      value: Minh Hai Nguyen
-    - name: Date of Birth
-      value: 7th January 2000
+      value: Minh-Hai Nguyen
+    - name: Website
+      value: mh-nguyen712.github.io
+    - name: Email
+      value: nguyenhai7120qh@gmail.com
+    - name: LinkedIn
+      value: linkedin.com/in/mh-nguyen712
+    - name: Phone
+      value: +33 7 69 60 25 04
     - name: Languages
-      value: English, French, Vietnamese
+      value: English (professional), French (fluent), Vietnamese (native)
+
+- title: Summary
+  type: list
+  contents:
+    - 3rd-year PhD candidate in the MAMBO team at Toulouse University (expected graduation: Dec. 2026), advised by Prof. Pierre Weiss and Prof. Edouard Pauwels.
+    - Research focus on computational imaging with deep learning and generative models.
+    - Active open-source contributor.
 
 - title: Education
   type: time_table
   contents:
-    - title: PhD student
-      institution: University of Toulouse, Toulouse, France
-      year: 2023..2026
+    - title: PhD in Applied Mathematics
+      institution: Toulouse University, France
+      year: 2023 - present
       description:
-        - Image Processing. Inverse problems in imaging.
-        - Applications to Microscopy
+        - Inverse problems in imaging.
     - title: Master of Engineering in Applied Mathematics
-      institution: INSA Toulouse, Toulouse, France
-      year: 2023
+      institution: INSA Toulouse, France
+      year: 2018 - 2023
       description:
-        - Image Processing
-        - Artificial Intelligence
+        - Major in AI / Data Science.
+    - title: Quoc Hoc Hue High School for Gifted Students
+      institution: Vietnam
+      year: 2015 - 2018
+      description:
+        - Specialized in Mathematics.
 
-- title: Experience
+- title: Work Experience
   type: time_table
   contents:
-    - title: Research Assistant
-      institution: Agenium Space
-      year: 2022 - 2023
+    - title: Research Engineer
+      institution: <a href="https://agenium-space.com/">Agenium Space</a>
+      year: Dec 2022 - Sept 2023
       description:
-        - Micro-vibrations in satellite imaging with pushbroom cameras
-
+        - Corrected micro-vibrations in satellite imaging with pushbroom cameras.
+        - Modeled the imaging process, implemented deep learning-based methods, and evaluated on real Sentinel-2B data.
     - title: Research Intern
-      institution: Institut de Mathématiques de Toulouse
-      year: 2022
+      institution: <a href="https://www.math.univ-toulouse.fr/fr/">Toulouse Mathematics Institute</a>
+      year: Jun 2022 - Sept 2022
       description:
-        - Product-convolution expansion and applications to deconvolution
+        - Product-convolution neural networks for image deblurring with space-varying blurs.
+        - Collaboration with Pierre Weiss and Paul Escande.
 
-- title: Open Source Projects
+- title: Open-Source Projects
   type: time_table
   contents:
-    - title: <a href="https://github.com/deepinv/deepinv">deepinv</a>
-      year: 2023-now
-      description: an open-source PyTorch library for solving imaging inverse problems using deep learning
+    - title: Blind Deblurring in Fluorescence Microscopy
+      year: Ongoing
+      description:
+        - Deep learning methods to jointly estimate sharp image and unknown blur kernel from a single blurred fluorescence microscopy image.
+        - Covers diffraction-limited blurs (Zernike polynomials), spatially varying blurs, and 2D/3D settings.
+        - Efficient PyTorch implementation and ongoing validation on RIM, TIRF, and confocal settings.
+        - Joint work with Pierre Weiss, Florian Sarron, Paul Escande, Thomas Mangeat, and Sylvain Cantaloube.
+        - Presented at <a href="https://imabio-cnrs.fr/mifobio-2025/">MIFOBIO-25</a>.
+    - title: DeepInverse - Core contributor and maintainer
+      year: 2023 - present
+      linkitems:
+        - link: https://github.com/deepinv/deepinv
+          linkname: GitHub
+      description:
+        - Open-source PyTorch library in the <a href="https://pytorch.org/blog/deepinverse-joins-pytorch-ecosystem/">PyTorch Ecosystem</a> for imaging inverse problems.
+        - Contributed to API design, benchmarks, CI/CD, packaging, documentation, and community support.
 
-# - title: Honors and Awards
-#   type: time_table
-#   contents:
-#     - year: 1921
-#       items:
-#         - Nobel Prize in Physics
-#         - Matteucci Medal
-#     - year: 2029
-#       items:
-#         - Max Planck Medal
-
-- title: Academic Interests
+- title: Skills
   type: nested_list
   contents:
-    - title: Image Processing.
+    - title: Programming
       items:
-        - Inverse Problems.
-        - Optimization.
-    - title: Generative modeling.
+        - Python, PyTorch (advanced), GPU programming.
+        - Triton/CUDA kernels (intermediate), JAX, C++ (intermediate).
+        - Large-scale training (DDP/FSDP) on GPU clusters (Jean-Zay).
+        - Profiling and optimization (Nsight, torch-profiler).
+    - title: Development
       items:
-        - Diffusion models.
-        - Flow models.
+        - Linux, Git/GitHub, packaging (PyPI), conda/uv/docker environments.
+        - SOTA implementation and evaluation, model training and fine-tuning.
+    - title: Research
+      items:
+        - Image restoration, computational imaging, deep learning.
+        - Deblurring/denoising, generative models, CNNs, Transformers, diffusion/flow models.
+
+- title: Talks and Presentations
+  type: time_table
+  contents:
+    - title: <a href="https://events.linuxfoundation.org/pytorch-conference-europe/program/schedule/">PyTorch Conference Europe 2026 (Speaker)</a>
+      location: Paris, France
+      year: Apr 2026
+      description:
+        - 'Title: DeepInverse and Computational Imaging.'
+    - title: Blind inverse problems in imaging from foundations to applications
+      location: Marseille, France
+      year: Oct 2025
+      description:
+        - 'Title: How diffusion prior landscapes shape the posterior in blind deconvolution.'
+    - title: <a href="https://gretsi.fr/colloque2025/">GRETSI 2025 (Oral)</a>
+      location: Strasbourg, France
+      year: Aug 2025
+      description:
+        - 'Title: How diffusion prior landscapes shape the posterior in blind deconvolution.'
+    - title: <a href="https://iabm2025.sciencesconf.org/">IABM (Poster)</a>
+      location: Nice, France
+      year: Mar 2025
+      description:
+        - 'Title: Deep learning-based blind deblurring in microscopy.'
+    - title: 30 Years of Mathematics for Optical Imaging (Oral)
+      location: Marseille, France
+      year: Oct 2023
+      description:
+        - 'Title: DeepVibes: Correcting Microvibrations in Satellite Imaging With Pushbroom Cameras.'
+
+- title: Teaching
+  type: time_table
+  contents:
+    - title: Teaching Assistant (Vacataire)
+      institution: INSA Toulouse
+      year: 2023 - present
+      description:
+        - Signal Processing.
+        - Stochastic Optimization (32 hours per year).
+
+- title: Distinctions
+  type: time_table
+  contents:
+    - year: Nov 2024
+      items:
+        - French National Prize for Open Science Library for DeepInverse.
+    - year: 2023 - 2026
+      items:
+        - Doctoral Research Fellowship, French Ministry of Higher Education and Research.
+    - year: 2023
+      items:
+        - IA Pau Winner.
 
 - title: Other Interests
   type: list
