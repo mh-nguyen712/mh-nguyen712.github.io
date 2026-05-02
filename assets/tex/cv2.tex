@@ -82,8 +82,7 @@
 \titlespacing{\section}{0pt}{10pt}{10pt}
 
 %for publications
-\usepackage[style=authoryear,sorting=ydnt, maxbibnames=2]{biblatex}
-
+\usepackage[style=authoryear,sorting=ydnt, maxbibnames=2, maxcitenames=4, mincitenames=1]{biblatex}
 %Setup hyperref package, and colours for links
 \usepackage[unicode, draft=false]{hyperref}
 \definecolor{linkcolour}{rgb}{0,0.2,0.6}
@@ -189,7 +188,7 @@ Product-convolution neural networks: applications to image deblurring with space
 %----------------------------------------------------------------------------------------
 \section{Open-source Projects}
 \begin{tabularx}{\linewidth}{ @{}l r@{} }
-\textbf{Blind deblurring in Fluorescence Microscopy} & \hfill Napari plugin released soon! 
+\textbf{Blind deblurring in Fluorescence Microscopy} & \hfill \href{https://deepblur.mambo-utoulouse.fr/}{Online demo}
 \\[3.25pt]
 \multicolumn{2}{@{}X@{}}{
 	Designing deep learning-based methods to jointly estimate the sharp image and the unknown blur kernel from a single blurred fluorescence microscopy image. 
