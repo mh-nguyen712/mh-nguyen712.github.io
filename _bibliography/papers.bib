@@ -1,127 +1,124 @@
 ---
 ---
 
-@ARTICLE{10559627,
-  author={Nguyen, Minh Hai and de Vieilleville, François and Weiss, Pierre},
-  journal={IEEE Transactions on Geoscience and Remote Sensing}, 
-  abbr={IEEE TGRS},
-  title={DeepVibes: Correcting Micro-vibrations in Satellite Imaging With Pushbroom Cameras}, 
-  year={2024},
-  volume={62},
-  number={},
-  pages={1-9},
-  keywords={Cameras;Satellites;Noise;Vibrations;Orbits;Mathematical models;Charge coupled devices;Convolutional neural network (CNN);jitter;microvibration;pushbroom;satellite imaging;unrolled network},
-  doi={10.1109/TGRS.2024.3415372},
-  pdf=pub_Vibrations.pdf,
-  abstract={In this paper, we propose new algorithms for
-estimating micro-vibrations and correcting its effects in
-satellite imaging with linear pushbroom camera. We first
-design an accurate model of the acquisition process with
-linear pushbroom camera, that incorporates the satellite
-attitude as parameters. We then propose a two stage
-reconstruction method based on an identification neural
-network to identify the attitude, followed by a deep unrolled
-network to correct the micro-vibrations. We then evalu-
-ate the proposed framework on synthetic and real data,
-showing promising results for this challenging problem.
-Our results highlight the critical role of the focal plane’s
-geometry, to improve the micro-vibrations identifiability
-and therefore, the reconstruction quality.},
-  bibtex_show={true},
-  html={micro_vibration_zoom.html},
-  preview={vibration.gif},
-  }
+@article{10559627,
+  author      = {Nguyen, Minh Hai and de Vieilleville, François and Weiss, Pierre},
+  journal     = {IEEE Transactions on Geoscience and Remote Sensing},
+  abbr        = {IEEE TGRS},
+  title       = {DeepVibes: Correcting Micro-vibrations in Satellite Imaging With Pushbroom Cameras},
+  year        = {2024},
+  volume      = {62},
+  number      = {},
+  pages       = {1-9},
+  keywords    = {Cameras;Satellites;Noise;Vibrations;Orbits;Mathematical models;Charge coupled devices;Convolutional neural network (CNN);jitter;microvibration;pushbroom;satellite imaging;unrolled network},
+  doi         = {10.1109/TGRS.2024.3415372},
+  pdf         = pub_Vibrations.pdf,
+  abstract    = {In this paper, we propose new algorithms for
+                 estimating micro-vibrations and correcting its effects in
+                 satellite imaging with linear pushbroom camera. We first
+                 design an accurate model of the acquisition process with
+                 linear pushbroom camera, that incorporates the satellite
+                 attitude as parameters. We then propose a two stage
+                 reconstruction method based on an identification neural
+                 network to identify the attitude, followed by a deep unrolled
+                 network to correct the micro-vibrations. We then evalu-
+                 ate the proposed framework on synthetic and real data,
+                 showing promising results for this challenging problem.
+                 Our results highlight the critical role of the focal plane’s
+                 geometry, to improve the micro-vibrations identifiability
+                 and therefore, the reconstruction quality.},
+  bibtex_show = {true},
+  html        = {micro_vibration_zoom.html},
+  preview     = {vibration.gif}
+}
 
 % html_embed={micro_vibrations.html}
 
 
 
 @article{nguyen2024pnp-unrolled,
-  title={Comparing Plug-and-Play and Unrolled networks},
-  author={Nguyen, Minh Hai and Weiss, Pierre},
-  year={2024},
-  journal={preprint},
-  pdf=pub_pnp_unrolled.pdf,
-  abstract={Plug-and-play and unrolled methods are among
-  the most popular and efficient approaches for solving inverse
-  problems in imaging. In this paper, we review their similarities
-  and differences. We adopt a Bayesian framework to explain
-  their statistical properties. This allows us to relate plug-and-play methods to Maximum A Posteriori (MAP) estimators and
-  unrolled networks to Minimum Mean Square Error (MMSE)
-  estimators. We clarify some of their properties including their
-  stability and numerical efficiency. Overall, this paper provides a
-  concise review of their respective advantages and limitations.},
-  abbr={preprint},
-  bibtex_show={true},
+  title       = {Comparing Plug-and-Play and Unrolled networks},
+  author      = {Nguyen, Minh Hai and Weiss, Pierre},
+  year        = {2024},
+  journal     = {preprint},
+  pdf         = pub_pnp_unrolled.pdf,
+  abstract    = {Plug-and-play and unrolled methods are among
+                 the most popular and efficient approaches for solving inverse
+                 problems in imaging. In this paper, we review their similarities
+                 and differences. We adopt a Bayesian framework to explain
+                 their statistical properties. This allows us to relate plug-and-play methods to Maximum A Posteriori (MAP) estimators and
+                 unrolled networks to Minimum Mean Square Error (MMSE)
+                 estimators. We clarify some of their properties including their
+                 stability and numerical efficiency. Overall, this paper provides a
+                 concise review of their respective advantages and limitations.},
+  abbr        = {preprint},
+  bibtex_show = {true}
 }
 
 
 @misc{nguyen2025diffusionpriorlandscapesshape,
-      title={How Diffusion Prior Landscapes Shape the Posterior in Blind Deconvolution}, 
-      author={Minh-Hai Nguyen and Edouard Pauwels and Pierre Weiss},
-      year={2025},
-      eprint={2508.02923},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV},
-      abstract={The Maximum A Posteriori (MAP) estimation is a widely used framework in blind deconvolution to
-          recover sharp images from blurred observations. The estimated image and blur filter are defined as
-          the maximizer of the posterior distribution. However, when paired with sparsity-promoting image
-          priors, MAP estimation has been shown to favors blurry solutions, limiting its effectiveness. In this
-          paper, we revisit this result using diffusion-based priors, a class of models that capture realistic image
-          distributions. Through an empirical examination of the prior's likelihood landscape, we uncover two
-          key properties: first, blurry images tend to have higher likelihoods; second, the landscape contains
-          numerous local minimizers that correspond to natural images. Building on these insights, we provide
-          a theoretical analysis of the blind deblurring posterior. This reveals that the MAP estimator tends to
-          produce sharp filters (close to the Dirac delta function) and blurry solutions. However local minimizers
-          of the posterior, which can be obtained with gradient descent, correspond to realistic, natural images,
-          effectively solving the blind deconvolution problem. Our findings suggest that overcoming MAP's
-          limitations requires good local initialization to local minima in the posterior landscape. We validate
-          our analysis with numerical experiments, demonstrating the practical implications of our insights for
-          designing improved priors and optimization techniques.
-      },
-      url={https://arxiv.org/abs/2508.02923},
-      pdf={https://www.arxiv.org/pdf/2508.02923},
-	  bibtex_show={true},
-	  abbr={arxiv},
-	  preview={kohler_deblurred.gif},
-    code={https://github.com/mh-nguyen712/blind_deblur_diffusion},
+  title         = {How Diffusion Prior Landscapes Shape the Posterior in Blind Deconvolution},
+  author        = {Minh-Hai Nguyen and Edouard Pauwels and Pierre Weiss},
+  year          = {2025},
+  eprint        = {2508.02923},
+  archiveprefix = {arXiv},
+  primaryclass  = {cs.CV},
+  abstract      = {The Maximum A Posteriori (MAP) estimation is a widely used framework in blind deconvolution to
+                   recover sharp images from blurred observations. The estimated image and blur filter are defined as
+                   the maximizer of the posterior distribution. However, when paired with sparsity-promoting image
+                   priors, MAP estimation has been shown to favors blurry solutions, limiting its effectiveness. In this
+                   paper, we revisit this result using diffusion-based priors, a class of models that capture realistic image
+                   distributions. Through an empirical examination of the prior's likelihood landscape, we uncover two
+                   key properties: first, blurry images tend to have higher likelihoods; second, the landscape contains
+                   numerous local minimizers that correspond to natural images. Building on these insights, we provide
+                   a theoretical analysis of the blind deblurring posterior. This reveals that the MAP estimator tends to
+                   produce sharp filters (close to the Dirac delta function) and blurry solutions. However local minimizers
+                   of the posterior, which can be obtained with gradient descent, correspond to realistic, natural images,
+                   effectively solving the blind deconvolution problem. Our findings suggest that overcoming MAP's
+                   limitations requires good local initialization to local minima in the posterior landscape. We validate
+                   our analysis with numerical experiments, demonstrating the practical implications of our insights for
+                   designing improved priors and optimization techniques.
+                   },
+  url           = {https://arxiv.org/abs/2508.02923},
+  pdf           = {https://www.arxiv.org/pdf/2508.02923},
+  bibtex_show   = {true},
+  abbr          = {arxiv},
+  preview       = {kohler_deblurred.gif},
+  code          = {https://github.com/mh-nguyen712/blind_deblur_diffusion}
 }
 
 
 @misc{tachella2025deepinversepythonpackagesolving,
-      title={DeepInverse: A Python package for solving imaging inverse problems with deep learning}, 
-      author={Julián Tachella and Matthieu Terris and Samuel Hurault and Andrew Wang and Dongdong Chen and Minh-Hai Nguyen and Maxime Song and Thomas Davies and Leo Davy and Jonathan Dong and Paul Escande and Johannes Hertrich and Zhiyuan Hu and Tobías I. Liaudat and Nils Laurent and Brett Levac and Mathurin Massias and Thomas Moreau and Thibaut Modrzyk and Brayan Monroy and Sebastian Neumayer and Jérémy Scanvic and Florian Sarron and Victor Sechaud and Georg Schramm and Romain Vo and Pierre Weiss},
-      abstract={DeepInverse is an open-source PyTorch-based library for solving imaging inverse problems.
-          The library covers all crucial steps in image reconstruction from the efficient implementation of
-          forward operators (e.g., optics, MRI, tomography), to the definition and resolution of variational
-          problems and the design and training of advanced neural network architectures. In this paper,
-          we describe the main functionality of the library and discuss the main design choices.},
-      year={2025},
-      eprint={2505.20160},
-      archivePrefix={arXiv},
-      primaryClass={eess.IV},
-      pdf={https://arxiv.org/abs/2505.20160},
-      preview={deepinv_logo.png}, 
-      website={https://deepinv.github.io/deepinv/},
-      code={https://github.com/deepinv/deepinv},
-      bibtex_show={true},
+  title         = {DeepInverse: A Python package for solving imaging inverse problems with deep learning},
+  author        = {Julián Tachella and Matthieu Terris and Samuel Hurault and Andrew Wang and Dongdong Chen and Minh-Hai Nguyen and Maxime Song and Thomas Davies and Leo Davy and Jonathan Dong and Paul Escande and Johannes Hertrich and Zhiyuan Hu and Tobías I. Liaudat and Nils Laurent and Brett Levac and Mathurin Massias and Thomas Moreau and Thibaut Modrzyk and Brayan Monroy and Sebastian Neumayer and Jérémy Scanvic and Florian Sarron and Victor Sechaud and Georg Schramm and Romain Vo and Pierre Weiss},
+  abstract      = {DeepInverse is an open-source PyTorch-based library for solving imaging inverse problems.
+                   The library covers all crucial steps in image reconstruction from the efficient implementation of
+                   forward operators (e.g., optics, MRI, tomography), to the definition and resolution of variational
+                   problems and the design and training of advanced neural network architectures. In this paper,
+                   we describe the main functionality of the library and discuss the main design choices.},
+  year          = {2025},
+  eprint        = {2505.20160},
+  archiveprefix = {arXiv},
+  primaryclass  = {eess.IV},
+  pdf           = {https://arxiv.org/abs/2505.20160},
+  preview       = {deepinv_logo.png},
+  website       = {https://deepinv.github.io/deepinv/},
+  code          = {https://github.com/deepinv/deepinv},
+  bibtex_show   = {true}
 }
 
 
-@misc{nguyen2026analytictheoryconvolutionalneural,
-	title={An analytic theory of convolutional neural network inverse problems solvers}, 
-	abstract={Supervised convolutional neural networks (CNNs) are widely used to solve imaging inverse problems, achieving state-of-the-art performance in numerous applications. 
-        However, despite their empirical success, these methods are poorly understood from a theoretical perspective and often treated as black boxes. 
-        To bridge this gap, we analyze trained neural networks through the lens of the Minimum Mean Square Error (MMSE) estimator, incorporating functional constraints that capture two fundamental inductive biases of CNNs: translation equivariance and locality via finite receptive fields. 
-        Under the empirical training distribution, we derive an analytic, interpretable, and tractable formula for this constrained variant, termed Local-Equivariant MMSE (LE-MMSE).
-        Through extensive numerical experiments across various inverse problems (denoising, inpainting, deconvolution), datasets (FFHQ, CIFAR-10, FashionMNIST), and architectures (U-Net, ResNet, PatchMLP), we demonstrate that our theory matches the neural networks outputs (PSNR $\!\gtrsim\!25$dB). 
-        Furthermore, we provide insights into the differences between \emph{physics-aware} and \emph{physics-agnostic} estimators, the impact of high-density regions in the training (patch) distribution, and the influence of other factors (dataset size, patch size, etc).},
-	author={Minh Hai Nguyen and Quoc Bao Do and Edouard Pauwels and Pierre Weiss},
-	year={2026},
-	eprint={2601.10334},
-	archivePrefix={arXiv},
-	primaryClass={cs.CV},
-	pdf={https://arxiv.org/abs/2601.10334}, 
-	code={https://github.com/mh-nguyen712/analytical_mmse},
-	bibtex_show={true},
+@inproceedings{nguyen2026analytictheoryconvolutionalneural,
+  title         = {An analytic theory of convolutional neural network inverse problems solvers},
+  author        = {Nguyen, Minh Hai and Do, Quoc Bao and Pauwels, Edouard and Weiss, Pierre},
+  booktitle     = {Proceedings of the 43rd International Conference on Machine Learning (ICML)},
+  abbr          = {ICML},
+  year          = {2026},
+  eprint        = {2601.10334},
+  archiveprefix = {arXiv},
+  primaryclass  = {cs.CV},
+  url           = {https://arxiv.org/abs/2601.10334},
+  code          = {https://github.com/mh-nguyen712/analytical_mmse},
+  bibtex_show   = {true},
+  abstract      = {Supervised convolutional neural networks (CNNs) are widely used to solve imaging inverse problems, achieving state-of-the-art performance in numerous applications. However, despite their empirical success, these methods are poorly understood from a theoretical perspective and often treated as black boxes. To bridge this gap, we analyze trained neural networks through the lens of the Minimum Mean Square Error (MMSE) estimator, incorporating functional constraints that capture two fundamental inductive biases of CNNs: translation equivariance and locality via finite receptive fields. Under the empirical training distribution, we derive an analytic, interpretable, and tractable formula for this constrained variant, termed Local-Equivariant MMSE (LE-MMSE). Through extensive numerical experiments across various inverse problems (denoising, inpainting, deconvolution), datasets (FFHQ, CIFAR-10, FashionMNIST), and architectures (U-Net, ResNet, PatchMLP), we demonstrate that our theory matches the neural networks outputs (PSNR $\gtrsim 25$dB). Furthermore, we provide insights into the differences between physics-aware and physics-agnostic estimators, the impact of high-density regions in the training (patch) distribution, and the influence of other factors (dataset size, patch size, etc).}
 }

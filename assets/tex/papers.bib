@@ -1,79 +1,83 @@
 ---
 ---
 
-@ARTICLE{10559627,
-  author={Nguyen, Minh Hai and de Vieilleville, François and Weiss, Pierre},
-  journal={IEEE Transactions on Geoscience and Remote Sensing}, 
-  abbr={IEEE TGRS},
-  title={DeepVibes: Correcting Microvibrations in Satellite Imaging With Pushbroom Cameras}, 
-  year={2024},
-  volume={62},
-  number={},
-  pages={1-9},
-  keywords={Cameras;Satellites;Noise;Vibrations;Orbits;Mathematical models;Charge coupled devices;Convolutional neural network (CNN);jitter;microvibration;pushbroom;satellite imaging;unrolled network},
-  pdf=pub_Vibrations.pdf,
-  abstract={In this paper, we propose new algorithms for
-            estimating micro-vibrations and correcting its effects in
-            satellite imaging with linear pushbroom camera. We first
-            design an accurate model of the acquisition process with
-            linear pushbroom camera, that incorporates the satellite
-            attitude as parameters. We then propose a two stage
-            reconstruction method based on an identification neural
-            network to identify the attitude, followed by a deep unrolled
-            network to correct the micro-vibrations. We then evalu-
-            ate the proposed framework on synthetic and real data,
-            showing promising results for this challenging problem.
-            Our results highlight the critical role of the focal plane's
-            geometry, to improve the micro-vibrations identifiability
-            and therefore, the reconstruction quality.},
-            }
+@article{10559627,
+  author   = {Nguyen, Minh Hai and de Vieilleville, François and Weiss, Pierre},
+  journal  = {IEEE Transactions on Geoscience and Remote Sensing},
+  abbr     = {IEEE TGRS},
+  title    = {DeepVibes: Correcting Microvibrations in Satellite Imaging With Pushbroom Cameras},
+  year     = {2024},
+  volume   = {62},
+  number   = {},
+  pages    = {1-9},
+  keywords = {Cameras;Satellites;Noise;Vibrations;Orbits;Mathematical models;Charge coupled devices;Convolutional neural network (CNN);jitter;microvibration;pushbroom;satellite imaging;unrolled network},
+  pdf      = pub_Vibrations.pdf,
+  abstract = {In this paper, we propose new algorithms for
+              estimating micro-vibrations and correcting its effects in
+              satellite imaging with linear pushbroom camera. We first
+              design an accurate model of the acquisition process with
+              linear pushbroom camera, that incorporates the satellite
+              attitude as parameters. We then propose a two stage
+              reconstruction method based on an identification neural
+              network to identify the attitude, followed by a deep unrolled
+              network to correct the micro-vibrations. We then evalu-
+              ate the proposed framework on synthetic and real data,
+              showing promising results for this challenging problem.
+              Our results highlight the critical role of the focal plane's
+              geometry, to improve the micro-vibrations identifiability
+              and therefore, the reconstruction quality.}
+}
 
 @article{nguyen2024pnp-unrolled,
-  title={Comparing Plug-and-Play and Unrolled networks},
-  author={Nguyen, Minh Hai and Weiss, Pierre},
-  year={2024},
-  journal={Pre-print},
-  pdf=pub_pnp_unrolled.pdf,
-  abstract={Plug-and-play and unrolled methods are among
-  the most popular and efficient approaches for solving inverse
-  problems in imaging. In this paper, we review their similarities
-  and differences. We adopt a Bayesian framework to explain
-  their statistical properties. This allows us to relate plug-and-play methods to Maximum A Posteriori (MAP) estimators and
-  unrolled networks to Minimum Mean Square Error (MMSE)
-  estimators. We clarify some of their properties including their
-  stability and numerical efficiency. Overall, this paper provides a
-  concise review of their respective advantages and limitations.},
+  title    = {Comparing Plug-and-Play and Unrolled networks},
+  author   = {Nguyen, Minh Hai and Weiss, Pierre},
+  year     = {2024},
+  journal  = {Pre-print},
+  pdf      = pub_pnp_unrolled.pdf,
+  abstract = {Plug-and-play and unrolled methods are among
+              the most popular and efficient approaches for solving inverse
+              problems in imaging. In this paper, we review their similarities
+              and differences. We adopt a Bayesian framework to explain
+              their statistical properties. This allows us to relate plug-and-play methods to Maximum A Posteriori (MAP) estimators and
+              unrolled networks to Minimum Mean Square Error (MMSE)
+              estimators. We clarify some of their properties including their
+              stability and numerical efficiency. Overall, this paper provides a
+              concise review of their respective advantages and limitations.}
 }
 
 @misc{nguyen2026morsebottframeworkblindinverse,
-      title={A Morse-Bott Framework for Blind Inverse Problems: Local Recovery Guarantees and the Failure of the MAP}, 
-      author={Minh-Hai Nguyen and Edouard Pauwels and Pierre Weiss},
-      year={2026},
-      eprint={2508.02923},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV},
-      url={https://arxiv.org/abs/2508.02923}, 
+  title         = {A Morse-Bott Framework for Blind Inverse Problems: Local Recovery Guarantees and the Failure of the MAP},
+  author        = {Minh Hai Nguyen and Edouard Pauwels and Pierre Weiss},
+  year          = {2026},
+  eprint        = {2508.02923},
+  archiveprefix = {arXiv},
+  primaryclass  = {cs.CV},
+  url           = {https://arxiv.org/abs/2508.02923}
 }
 
 @article{tachella2025deepinverse,
-    title = {DeepInverse: A Python package for solving imaging inverse problems with deep learning},
-    journal = {Journal of Open Source Software},
-    doi = {10.21105/joss.08923},
-    url = {https://doi.org/10.21105/joss.08923},
-    year = {2025},
-    publisher = {The Open Journal},
-    volume = {10},
-    number = {115},
-    pages = {8923},
-    author = {Tachella, Julián and Terris, Matthieu and Hurault, Samuel and Wang, Andrew and Davy, Leo and Scanvic, Jérémy and Sechaud, Victor and Vo, Romain and Moreau, Thomas and Davies, Thomas and Chen, Dongdong and Laurent, Nils and Monroy, Brayan and Dong, Jonathan and Hu, Zhiyuan and Nguyen, Minh-Hai and Sarron, Florian and Weiss, Pierre and Escande, Paul and Massias, Mathurin and Modrzyk, Thibaut and Levac, Brett and Liaudat, Tobías I. and Song, Maxime and Hertrich, Johannes and Neumayer, Sebastian and Schramm, Georg},
+  title     = {DeepInverse: A Python package for solving imaging inverse problems with deep learning},
+  journal   = {Journal of Open Source Software},
+  doi       = {10.21105/joss.08923},
+  url       = {https://doi.org/10.21105/joss.08923},
+  year      = {2025},
+  publisher = {The Open Journal},
+  volume    = {10},
+  number    = {115},
+  pages     = {8923},
+  author    = {Tachella, Julián and Terris, Matthieu and Hurault, Samuel and Wang, Andrew and Davy, Leo and Scanvic, Jérémy and Sechaud, Victor and Vo, Romain and Moreau, Thomas and Davies, Thomas and Chen, Dongdong and Laurent, Nils and Monroy, Brayan and Dong, Jonathan and Hu, Zhiyuan and Nguyen, Minh-Hai and Sarron, Florian and Weiss, Pierre and Escande, Paul and Massias, Mathurin and Modrzyk, Thibaut and Levac, Brett and Liaudat, Tobías I. and Song, Maxime and Hertrich, Johannes and Neumayer, Sebastian and Schramm, Georg}
 }
 
-@misc{nguyen2026analytictheoryconvolutionalneural,
-      title={An analytic theory of convolutional neural network inverse problems solvers}, 
-      author={Minh Hai Nguyen and Quoc Bao Do and Edouard Pauwels and Pierre Weiss},
-      year={2026},
-      eprint={2601.10334},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV},
-      url={https://arxiv.org/abs/2601.10334}, 
+@inproceedings{nguyen2026analytictheoryconvolutionalneural,
+  title         = {An analytic theory of convolutional neural network inverse problems solvers},
+  author        = {Nguyen, Minh Hai and Do, Quoc Bao and Pauwels, Edouard and Weiss, Pierre},
+  booktitle     = {Proceedings of the 43rd International Conference on Machine Learning (ICML)},
+  year          = {2026},
+  eprint        = {2601.10334},
+  archiveprefix = {arXiv},
+  primaryclass  = {cs.CV},
+  url           = {https://arxiv.org/abs/2601.10334},
+  code          = {https://github.com/mh-nguyen712/analytical_mmse},
+  bibtex_show   = {true},
+  abstract      = {Supervised convolutional neural networks (CNNs) are widely used to solve imaging inverse problems, achieving state-of-the-art performance in numerous applications. However, despite their empirical success, these methods are poorly understood from a theoretical perspective and often treated as black boxes. To bridge this gap, we analyze trained neural networks through the lens of the Minimum Mean Square Error (MMSE) estimator, incorporating functional constraints that capture two fundamental inductive biases of CNNs: translation equivariance and locality via finite receptive fields. Under the empirical training distribution, we derive an analytic, interpretable, and tractable formula for this constrained variant, termed Local-Equivariant MMSE (LE-MMSE). Through extensive numerical experiments across various inverse problems (denoising, inpainting, deconvolution), datasets (FFHQ, CIFAR-10, FashionMNIST), and architectures (U-Net, ResNet, PatchMLP), we demonstrate that our theory matches the neural networks outputs (PSNR $\gtrsim 25$dB). Furthermore, we provide insights into the differences between physics-aware and physics-agnostic estimators, the impact of high-density regions in the training (patch) distribution, and the influence of other factors (dataset size, patch size, etc).}
 }
