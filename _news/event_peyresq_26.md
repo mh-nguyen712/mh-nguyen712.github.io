@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-I'm attending the [Peyresq 26 summer school](https://www.gretsi.fr/peyresq) on Generative Models. A week-long event with lectures, tutorials, and discussions on the latest developments in generative modeling: diffusion models, flow matching and optimal transport.   
+I'm attending the [Peyresq 26 summer school](https://www.gretsi.fr/peyresq) on Generative Models. A week-long event with lectures, tutorials, and discussions on the latest developments in generative modeling: diffusion models, flow matching and optimal transport.
