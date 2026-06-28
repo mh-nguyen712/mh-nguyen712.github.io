@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-New pre-print titled "How Diffusion Prior Landscapes Shape the Posterior in Blind Deconvolution". We study the problem of blind deconvolution with state-of-the-art diffusion models as prior.
+New pre-print titled "A Morse-Bott Framework for Blind Inverse Problems Local Recovery Guarantees and the Failure of the MAP". We study the problem of blind deconvolution with state-of-the-art diffusion models as prior.

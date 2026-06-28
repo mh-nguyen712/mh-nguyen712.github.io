@@ -57,27 +57,30 @@
 
 
 @misc{nguyen2025diffusionpriorlandscapesshape,
-  title         = {How Diffusion Prior Landscapes Shape the Posterior in Blind Deconvolution},
+  title         = {A Morse-Bott Framework for Blind Inverse Problems Local Recovery Guarantees and the Failure of the MAP},
   author        = {Minh-Hai Nguyen and Edouard Pauwels and Pierre Weiss},
   year          = {2025},
   eprint        = {2508.02923},
   archiveprefix = {arXiv},
   primaryclass  = {cs.CV},
-  abstract      = {The Maximum A Posteriori (MAP) estimation is a widely used framework in blind deconvolution to
-                   recover sharp images from blurred observations. The estimated image and blur filter are defined as
-                   the maximizer of the posterior distribution. However, when paired with sparsity-promoting image
-                   priors, MAP estimation has been shown to favors blurry solutions, limiting its effectiveness. In this
-                   paper, we revisit this result using diffusion-based priors, a class of models that capture realistic image
-                   distributions. Through an empirical examination of the prior's likelihood landscape, we uncover two
-                   key properties: first, blurry images tend to have higher likelihoods; second, the landscape contains
-                   numerous local minimizers that correspond to natural images. Building on these insights, we provide
-                   a theoretical analysis of the blind deblurring posterior. This reveals that the MAP estimator tends to
-                   produce sharp filters (close to the Dirac delta function) and blurry solutions. However local minimizers
-                   of the posterior, which can be obtained with gradient descent, correspond to realistic, natural images,
-                   effectively solving the blind deconvolution problem. Our findings suggest that overcoming MAP's
-                   limitations requires good local initialization to local minima in the posterior landscape. We validate
-                   our analysis with numerical experiments, demonstrating the practical implications of our insights for
-                   designing improved priors and optimization techniques.
+  abstract      = {Maximum A Posteriori (MAP) estimation is a cornerstone framework for blind inverse problems, where an image and a forward operator are jointly
+                   estimated as the maximizers of a posterior distribution. In applications such as blind deblurring, this principle is used to recover sharp images
+                   from degraded observations. In this paper, we analyze the recovery guarantees of MAP-based methods by adopting a \emph{Morse--Bott framework}. We
+                   model the image potential as a Morse--Bott function, where natural images are modeled as residing locally on a critical submanifold. This means
+                   that while the potential is locally flat along the ``natural'' directions of the image manifold, it is strictly convex in the directions normal to it.
+                   We demonstrate that this Morse--Bott hypothesis aligns with the structural properties of state-of-the-art learned priors, a finding we validate
+                   through an experimental analysis of the potential landscape and its Hessian spectrum.
+                   Our theoretical results show that, in a neighborhood of the ground-truth image and operator, the posterior admits local minimizers that are
+                   stable both with respect to initialization (gradient descents converge to the same minimizer) and to small perturbations of the data (solutions
+                   vary smoothly with the observations). This local stability potentially provides a theoretical justification for the empirical success of well designed
+                   gradient-based optimization in these settings.
+                   However, we also demonstrate that this local stability is a \textbf{local} property: the ``blurry trap'', well-known for sparse priors in blind
+                   deconvolution, persists even with state-of-the-art learned priors.
+                   Our findings demonstrate that the failure of MAP in blind deconvolution is not a limitation of prior quality, but an intrinsic characteristic of
+                   the landscape.
+                   We conclude that successful recovery depends on strategic initialization around favorable local minima. We describe an heuristic strategy which is validated with
+                   numerical experiments on both synthetic and real-world data.
+                   The code for reproducing the numerical experiments in this paper is available at \url{https://github.com/mh-nguyen712/blind_deblur_diffusion}
                    },
   url           = {https://arxiv.org/abs/2508.02923},
   pdf           = {https://www.arxiv.org/pdf/2508.02923},

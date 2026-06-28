@@ -25,24 +25,7 @@
 %	DOCUMENT DEFINITION
 %----------------------------------------------------------------------------------------
 
-% article class because we want to fully customize the page and not use a cv template
 \documentclass[a4paper,11pt]{article}
-
-%----------------------------------------------------------------------------------------
-%	FONT
-%----------------------------------------------------------------------------------------
-
-% % fontspec allows you to use TTF/OTF fonts directly
-% \usepackage{fontspec}
-% \defaultfontfeatures{Ligatures=TeX}
-
-% % modified for ShareLaTeX use
-% \setmainfont[
-% SmallCapsFont = Fontin-SmallCaps.otf,
-% BoldFont = Fontin-Bold.otf,
-% ItalicFont = Fontin-Italic.otf
-% ]
-% {Fontin.otf}
 
 %----------------------------------------------------------------------------------------
 %	PACKAGES
@@ -50,54 +33,37 @@
 \usepackage{url}
 \usepackage{parskip} 	
 
-%other packages for formatting
 \RequirePackage{color}
 \RequirePackage{graphicx}
 \usepackage[usenames,dvipsnames]{xcolor}
 \usepackage[scale=0.9]{geometry}
 
-%tabularx environment
 \usepackage{tabularx}
-
-%for lists within experience section
 \usepackage{enumitem}
 
-% centered version of 'X' col. type
 \newcolumntype{C}{>{\centering\arraybackslash}X} 
 
-%to prevent spillover of tabular into next pages
 \usepackage{supertabular}
 \usepackage{tabularx}
 \newlength{\fullcollw}
 \setlength{\fullcollw}{0.47\textwidth}
 
-%custom \section
 \usepackage{titlesec}				
 \usepackage{multicol}
 \usepackage{multirow}
 
-%CV Sections inspired by: 
-%http://stefano.italians.nl/archives/26
 \titleformat{\section}{\Large\scshape\raggedright}{}{0em}{}[\titlerule]
 \titlespacing{\section}{0pt}{10pt}{10pt}
 
-%for publications
 \usepackage[style=authoryear,sorting=ydnt, maxbibnames=2, maxcitenames=4, mincitenames=1]{biblatex}
-%Setup hyperref package, and colours for links
 \usepackage[unicode, draft=false]{hyperref}
 \definecolor{linkcolour}{rgb}{0,0.2,0.6}
 \hypersetup{colorlinks,breaklinks,urlcolor=linkcolour,linkcolor=linkcolour}
 \addbibresource{papers.bib}
 \setlength\bibitemsep{1em}
 
-%for social icons
 \usepackage{fontawesome5}
 
-%debug page outer frames
-%\usepackage{showframe}
-
-
-% job listing environments
 \newenvironment{jobshort}[2]
     {
     \begin{tabularx}{\linewidth}{@{}l X r@{}}
@@ -120,148 +86,108 @@
     \end{minipage}    
     }
 
-
-
 %----------------------------------------------------------------------------------------
 %	BEGIN DOCUMENT
 %----------------------------------------------------------------------------------------
 \begin{document}
 
-% non-numbered pages
 \pagestyle{empty} 
-
-%----------------------------------------------------------------------------------------
-%	TITLE
-%----------------------------------------------------------------------------------------
-
-% \begin{tabularx}{\linewidth}{ @{}X X@{} }
-% \huge{Your Name}\vspace{2pt} & \hfill \emoji{incoming-envelope} email@email.com \\
-% \raisebox{-0.05\height}\faGithub\ username \ | \
-% \raisebox{-0.00\height}\faLinkedin\ username \ | \ \raisebox{-0.05\height}\faGlobe \ mysite.com  & \hfill \emoji{calling} number
-% \end{tabularx}
 
 \begin{tabularx}{\linewidth}{@{} C @{}}
 \center{\footnotesize Last updated: \today} \hfill {\Huge{\textbf{Minh-Hai Nguyen}}} \\[7.5pt]
-% \href{https://github.com/username}{\raisebox{-0.05\height}\faGithub\ mh-nguyen712} \ $|$ \ 
 \href{https://www.linkedin.com/in/mh-nguyen712/}{\raisebox{-0.05\height}\faLinkedin\ mh-nguyen712} \ \(|\) \ 
 \href{https://mh-nguyen712.github.io/}{\raisebox{-0.05\height}\faGlobe \ mh-nguyen712.github.io} \ \(|\) \ 
 \href{mailto:nguyenhai7120qh@gmail.com}{\raisebox{-0.05\height}\faEnvelope \ nguyenhai7120qh@gmail.com} \ \(|\) \ 
 \href{tel:+33 7 69 60 25 04}{\raisebox{-0.05\height}\faMobile \ +33 7 69 60 25 04} \\
 \end{tabularx}
 
-%----------------------------------------------------------------------------------------
-% EXPERIENCE SECTIONS
-%----------------------------------------------------------------------------------------
 \vspace*{-0.3cm}
-%Interests/ Keywords/ Summary
 \section{Summary}
-    I am a 3rd-year PhD candidate in MAMBO team at Toulouse University (expected graduation: Dec. 2026), advised by \href{https://pierre-weiss.github.io/}{Prof. Pierre Weiss} and \href{https://edouardpauwels.fr/}{Prof. Edouard Pauwels}.
-    My research focuses on computational imaging with deep learning and generative models. 
-    I also actively contribute to open-source software.
-%Experience
+    I am a last year PhD candidate in the MAMBO team at Toulouse University (expected graduation: Dec. 2026), advised by \href{https://pierre-weiss.github.io/}{Prof. Pierre Weiss} and \href{https://edouardpauwels.fr/}{Prof. Edouard Pauwels}.
+    My research focuses on computational imaging, mathematical analysis, and modern generative modeling (including score-based diffusion models and flow matching). I specialize in developing theoretical frameworks and deep learning models for inverse problems in imaging, with applications in microscopy and satellite imaging. I'm also interested in generative modeling for image generation, image reconstruction and vision-language models (VLMs). 
+
+\section{Education}
+\begin{tabularx}{\linewidth}{@{}l X@{}}	
+2023 - present & Toulouse University, France \hfill \\
+            & PhD in Applied Mathematics, advised by \href{https://pierre-weiss.github.io/}{Prof. Pierre Weiss} and \href{https://edouardpauwels.fr/}{Prof. Edouard Pauwels}. \\
+2018 - 2023 & INSA Toulouse, France \hfill  \\
+            & Master of Engineering in Applied Mathematics (incl. bachelor), top 3\% of the year \\
+\end{tabularx}
+
 \section{Work Experience}
+\begin{jobshort}{Teaching assistant -- INSA Toulouse}{Dec 2023 - May 2026}
+Courses: Signal Processing, Stochastic Optimization and Machine Learning
+\end{jobshort}
 
 \begin{jobshort}{Research Engineer -- \href{https://agenium-space.com/}{Agenium Space}}{Dec 2022 - Sept 2023}
-Correcting micro-vibrations in satellite imaging with pushbroom cameras. Modeling the imaging process, implementing deep learning-based methods, and evaluating them on real data from Sentinel-2B.
+Correcting micro-vibrations in satellite imaging with pushbroom cameras.
+Modeled the physical imaging process, derived theoretical bounds for image restoration, and designed diffusion-based generative methods to improve real data from Sentinel-2B.
 \end{jobshort}
 
 \begin{jobshort}{Research Intern -- \href{https://www.math.univ-toulouse.fr/fr/}{Toulouse Mathematics Institute}}{Jun 2022 - Sept 2022}
 Product-convolution neural networks: applications to image deblurring with space-varying blurs, with \href{https://pierre-weiss.github.io/}{Pierre Weiss} and \href{https://pescande.perso.math.cnrs.fr/}{Paul Escande}.
+Formulated local quantitative stability properties and designed a deep learning-based framework for deblurring with complex spatially varying blurs.
 \end{jobshort}
 
 
-%----------------------------------------------------------------------------------------
-%	EDUCATION
-%----------------------------------------------------------------------------------------
-\section{Education}
-\begin{tabularx}{\linewidth}{@{}l X@{}}	
-2023 - present & PhD (Applied Mathematics, Inverse problems in Imaging) at Toulouse University, France \hfill \\
-
-2018 - 2023 & Master of Engineering in Applied Mathematics at INSA Toulouse, France \hfill (Major in AI / Data Science) \\
-
-2015 - 2018 & Quoc Hoc Hue High School for Gifted Students, Vietnam \hfill (Specialized in Math) \\
-\end{tabularx}
-
-
-%----------------------------------------------------------------------------------------
-%	Projects
-%----------------------------------------------------------------------------------------
 \section{Open-source Projects}
 \begin{tabularx}{\linewidth}{ @{}l r@{} }
-\textbf{Blind deblurring in Fluorescence Microscopy} & \hfill \href{https://deepblur.mambo-utoulouse.fr/}{Online demo}
-\\[3.25pt]
+\textbf{Blind deblurring in Microscopy} & \hfill \href{https://deepblur.mambo-utoulouse.fr/}{Online demo}
+\\[2pt]
 \multicolumn{2}{@{}X@{}}{
-	Designing deep learning-based methods to jointly estimate the sharp image and the unknown blur kernel from a single blurred fluorescence microscopy image. 
-	We address diffraction-limited blurs based on Zernike polynomials, spatially varying blurs and 2D/3D settings. 
-	Efficient implementation in PyTorch and ongoing validation on various microscopy settings (RIM, TIRF, confocal). Joint work with \href{https://pierre-weiss.github.io/}{Pierre Weiss}, \href{https://fsarron.github.io/}{Florian Sarron}, \href{https://pescande.perso.math.cnrs.fr/}{Paul Escande} and opticians \href{https://scholar.google.fr/citations?user=hPebN5AAAAAJ}{Thomas Mangeat}, Sylvain Cantaloube. Presented at \href{https://imabio-cnrs.fr/mifobio-2025/}{MIFOBIO-25}.  
-	\vspace*{0.25cm}
+	Designing mathematical and deep learning methods to jointly estimate the sharp image and the unknown blur kernel.
+    Focused on rigorous physical modeling of optical systems, PSF estimation and image deblurring. 
+    The framework supports various imaging modalities (RIM, TIRF, confocal) and space-varying blurs..
 }  
-\\ %\vspace*{0.5cm}
-\textbf{DeepInverse -- Core contributor and maintainer} & \hfill \href{https://github.com/deepinv/deepinv}{Link to Github} 
-\\[3.25pt]
+\\ \\
+\textbf{\href{https://deepinv.github.io/deepinv/}{DeepInverse} -- Core maintainer} & \hfill \href{https://github.com/deepinv/deepinv}{Link to Github} 
+\\[2pt]
 \multicolumn{2}{@{}X@{}}{
-	An open-source PyTorch-based library (part of the \href{https://pytorch.org/blog/deepinverse-joins-pytorch-ecosystem/}{PyTorch Ecosystem}) for solving imaging inverse problems with state-of-the-art deep learning based methods. \texttt{deepinv} accelerates research across imaging domains, enhances research reproducibility via a common modular framework of problems and algorithms. 
-	Responsibilities: core library API design/contribution, benchmarks, CI/CD, packaging, docs, and community support. 
+	An open-source library (\href{https://pytorch.org/blog/deepinverse-joins-pytorch-ecosystem/}{PyTorch Ecosystem}) for solving imaging inverse problems with state-of-the-art AI.
+    Contributed advanced mathematical solvers, diffusion \& flow matching models, and algorithmic designs ensuring research reproducibility and robust theoretical baselines.
 }  \\
 \end{tabularx}
-%----------------------------------------------------------------------------------------
-%	SKILLS
-%----------------------------------------------------------------------------------------
-\section{Skills}
-\begin{tabularx}{\linewidth}{@{}l X@{}}
-\textbf{Programming} &  \normalsize{Python: PyTorch (advanced), GPU programming, triton/cuda kernel (intermediate), JAX.} \hfill \normalsize{C++ (intermediate). Large-scale training (DDP, FSDP) on GPU clusters (\href{http://www.idris.fr/eng/jean-zay/jean-zay-presentation-eng.html}{Jean-Zay}).}\\
-& Profiling/optimization (Nsight, torch-profiler) \\
-\textbf{Development}  &  \normalsize{Linux, Git/Github, packaging (PyPI), virtual environments (\texttt{conda}, \texttt{uv}, \texttt{docker}).}\\  
-& \normalsize{SOTA implementation and evaluation, model training and fine-tuning.} \\
-\textbf{Research} & \normalsize{Image restoration, computational imaging, deep learning, deblurring/denoising, generative models, CNNs, Transformers, diffusion/flow models.} \\
-\textbf{Language} & English (professional), French (fluent), Vietnamese (native) \\
-\end{tabularx}
 
-%---------------------------------------------------------------------------------------
-% TALK AND PRESENTATIONS
-% -------------------------------------------------------------------------------------- 
-\section{Talks and Presentations}
-\begin{itemize}
-    \item \href{https://events.linuxfoundation.org/pytorch-conference-europe/program/schedule/}{PyTorch Conference Europe 2026 (Speaker)} \hfill Paris, France, Apr. 2026
-    \\ Title: DeepInverse and Computational Imaging
-    \item Blind inverse problems in imaging: from foundations to applications \hfill Marseille, France, Oct 2025
-    \\ Title: How diffusion prior landscapes shape the posterior in blind deconvolution
-    \item \href{https://gretsi.fr/colloque2025/}{GRETSI'25 (Oral)} \hfill Strasbourg, France, Aug. 2025
-    \\ Title: How diffusion prior landscapes shape the posterior in blind deconvolution
-    \item \href{https://iabm2025.sciencesconf.org/}{IABM (French Conference on AI in Medical Imaging) (Poster)} \hfill Nice, France, Mar. 2025
-    \\ Title: Deep learning-based blind deblurring in microscopy
-    \item 30 years of Mathematical for Optical Imaging (Oral) \hfill Marseille, France, Oct. 2023
-    \\ Title: DeepVibes: Correcting Microvibrations in Satellite Imaging With Pushbroom Cameras
-\end{itemize}
-
-%---------------------------------------------------------------------------------------
-% TEACHING EXPERIENCE
-% -------------------------------------------------------------------------------------- 
-\section{Teaching}
-\begin{itemize}
-    \item Teaching Assistant (Vacataire) -- \textbf{INSA Toulouse} \hfill 2023 - present
-    \\Courses: Signal Processing, Stochastic Optimization (32 hours per year)
-
-\end{itemize}
-%---------------------------------------------------------------------------------------
-% DISTINCTIONS
-% -------------------------------------------------------------------------------------- 
-\section{Distinctions}
-\begin{itemize}
-	\item French National Prize for Open Science Library for DeepInverse \hfill Nov 2024
-	\item Doctoral Research Fellowship, French Ministry of Higher Education and Research \hfill 2023 - 2026
-	\item IA Pau Winner \hfill 2023
-\end{itemize}
-%----------------------------------------------------------------------------------------
-%	PUBLICATIONS
-%----------------------------------------------------------------------------------------
-\section{Publications}
+\section{Selected Publications}
 \begin{refsection}[papers.bib]
 \nocite{*}
 \printbibliography[heading=none]
 \end{refsection}
 
-% \vfill
-% \center{\footnotesize Last updated: \today}
+\section{Skills}
+\textbf{Research:}
+computational imaging, generative models (diffusions, flows, VLMs) and representation learning. \\
+\textbf{Programming language:} Python, C++, SQL \\
+\textbf{Deep learning frameworks:}
+PyTorch, JAX, CUDA/Triton kernels, HuggingFace ecosystem, 
+distributed training (DDP, FSDP), profiling (Nsight, torch-profiler), numpy, scikit-learn, pandas, HPC clusters (\href{http://www.idris.fr/eng/jean-zay/jean-zay-presentation-eng.html}{Jean-Zay}). \\
+\textbf{Tools:}
+Linux, Git/GitHub, Docker, open-source ecosystem. \\
+\textbf{Languages:}
+English (professional), French (fluent), Vietnamese (native).
+
+\section{Talks and Presentations}
+\begin{itemize}
+    \item \href{https://icml.cc/}{ICML 2026 (Poster)} \hfill Seoul, South Korea, Jul. 2026
+    \\ Title: An analytic theory of convolutional neural network inverse problems solvers
+    \item \href{https://events.linuxfoundation.org/pytorch-conference-europe/program/schedule/}{PyTorch Conference Europe 2026 (Speaker)} \hfill Paris, France, Apr. 2026
+    \\ Title: DeepInverse and Computational Imaging
+    \item Blind inverse problems in imaging: from foundations to applications (Oral) \hfill Marseille, France, Oct 2025
+    \\ Title: How diffusion prior landscapes shape the posterior in blind deconvolution
+\end{itemize}
+
+\section{Academic Service}
+\subsection*{Reviewing}
+\begin{itemize}
+    \item Conferences: ICML 2026, CVPR 2025, GRETSI 2025
+    \item Journals: Journal of Mathematical Imaging and Vision (JMIV)
+\end{itemize}
+
+\section{Distinctions}
+\begin{itemize}
+	\item French National Prize for Open Science Library for DeepInverse \hfill Nov 2024
+	\item Doctoral Research Fellowship, French Ministry of Higher Education and Research \hfill 2023 - 2026
+	\item IA Pau Winner: efficient language model (50+ teams) \hfill 2023 
+\end{itemize}
 
 \end{document}
