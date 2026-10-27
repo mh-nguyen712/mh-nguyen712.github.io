@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>Blind deblurring in fluorescence microscopy · Minh Hai Nguyen</title>
+
+<meta name="description" content="Minh Hai Nguyen — PhD candidate in applied mathematics at the University of Toulouse, working on inverse problems, computational imaging and diffusion models." />
+<meta name="author" content="Minh Hai Nguyen" />
+<link rel="canonical" href="https://mh-nguyen712.github.io/projects/blind-deblurring-microscopy/" />
+<link
+  rel="icon"
+  href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚛️</text></svg>"
+/>
+
+<!-- Apply the saved theme before the page paints (dark is the default) -->
+<script>
+  try {
+    if (localStorage.getItem("theme") === "light") document.documentElement.dataset.theme = "light";
+  } catch (e) {}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400..600&display=swap" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+<link rel="stylesheet" href="/assets/css/main.css" />
+
+  </head>
+  <body>
+    <canvas id="point-cloud" aria-hidden="true"></canvas>
+    <header class="site-header">
+  <div class="container header-inner">
+    <a class="site-name" href="/">Minh Hai Nguyen</a>
+    <nav class="site-nav" aria-label="Main">
+         
+      <a href="/" >About</a>
+         
+      <a href="/news/" >News</a>
+         
+      <a href="/publications/" >Publications</a>
+         
+      <a href="/projects/" aria-current="page" >Projects</a>
+         
+      <a href="/teaching/" >Teaching</a>
+         
+      <a href="/cv/" >CV</a>
+      
+      <button class="theme-toggle" type="button" aria-label="Toggle light/dark theme" title="Toggle light/dark theme">
+        <i class="fa-solid fa-sun icon-light"></i><i class="fa-solid fa-moon icon-dark"></i>
+      </button>
+    </nav>
+  </div>
+</header>
+
+    <main class="container"><article class="page project">
+  <p class="back"><a href="/projects/">← All projects</a></p>
+  <header class="page-header">
+    <h1>Blind deblurring in fluorescence microscopy</h1>
+    <p class="meta">PhD project · Ongoing</p>
+    <p class="lead">Jointly estimating the sharp image and the unknown blur from a single fluorescence microscopy image, with deep learning and diffusion priors.</p>
+    <div class="links">
+      
+      <a class="pill" href="https://github.com/mh-nguyen712/blind_deblur_diffusion">Code</a>
+      
+      <a class="pill" href="https://arxiv.org/abs/2508.02923">Paper</a>
+      
+      <a class="pill" href="/assets/pdf/poster_iabm_2025.pdf">Poster</a>
+      
+    </div>
+  </header>
+  
+  <figure class="project-figure"><img src="/assets/img/publication_preview/deepblur_estimated_psf.png" alt="Blind deblurring in fluorescence microscopy" /></figure>
+  
+  <div class="prose"><ul>
+  <li>Covers diffraction-limited blurs (Zernike polynomials), spatially varying blurs, and 2D/3D settings.</li>
+  <li>Efficient PyTorch implementation, with ongoing validation on RIM, TIRF and confocal microscopes.</li>
+  <li>Theory: a Morse-Bott analysis of MAP estimation with learned priors, explaining when gradient-based methods recover the right image and why the “blurry trap” persists.</li>
+  <li>Joint work with Pierre Weiss, Florian Sarron, Paul Escande, Thomas Mangeat and Sylvain Cantaloube. Presented at <a href="https://imabio-cnrs.fr/mifobio-2025/">MIFOBIO 2025</a>.</li>
+</ul>
+</div>
+</article>
+</main>
+    <footer class="site-footer">
+  <div class="container">© 2026 Minh Hai Nguyen · Built with <a href="https://jekyllrb.com/">Jekyll</a>, hosted on <a href="https://pages.github.com/">GitHub Pages</a>.</div>
+</footer>
+
+    <script src="/assets/js/site.js" defer></script>
+    <script src="/assets/js/point-cloud.js" defer></script>
+  </body>
+</html>
