@@ -15,7 +15,12 @@ assets/pdf/, preview → assets/img/publication_preview/, html → assets/html/.
   </div>
 
   <div class="pub-body">
-    <div class="pub-title">{{ entry.title }}</div>
+    {% comment %} The title links to the arXiv page; without an arXiv id it falls back to the DOI, the url field, then the PDF. {% endcomment %} {%
+    assign title_href = nil %} {% if entry.eprint %} {% assign title_href = "https://arxiv.org/abs/" | append: entry.eprint %} {% elsif entry.doi %}
+    {% assign title_href = "https://doi.org/" | append: entry.doi %} {% elsif entry.url %} {% assign title_href = entry.url %} {% elsif entry.pdf %}
+    {% assign title_href = entry.pdf %} {% unless title_href contains "://" %}{% assign title_href = title_href | prepend: "/assets/pdf/" |
+    relative_url %}{% endunless %} {% endif %}
+    <div class="pub-title">{% if title_href %}<a href="{{ title_href }}">{{ entry.title }}</a>{% else %}{{ entry.title }}{% endif %}</div>
 
     <div class="pub-authors">
       {%- for author in entry.author_array -%} {%- assign is_me = false -%} {%- if site.scholar.last_name contains author.last and

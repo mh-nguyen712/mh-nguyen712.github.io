@@ -580,6 +580,20 @@ ol.bibliography {
   font-weight: 500;
   font-size: 1.02rem;
   line-height: 1.4;
+
+  a {
+    color: var(--text);
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-underline-offset: 3px;
+    transition:
+      color 0.15s,
+      text-decoration-color 0.15s;
+    &:hover {
+      color: var(--accent);
+      text-decoration-color: currentColor;
+    }
+  }
 }
 
 .pub-authors {
