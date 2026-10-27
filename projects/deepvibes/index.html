@@ -64,14 +64,50 @@
       
       <a class="pill" href="https://doi.org/10.1109/TGRS.2024.3415372">Paper</a>
       
-      <a class="pill" href="/assets/html/micro_vibration_zoom.html">Interactive demo</a>
+      <a class="pill" href="/projects/deepvibes/#demo">Interactive demo</a>
       
     </div>
   </header>
   
-  <figure class="project-figure"><img src="/assets/img/publication_preview/vibration.gif" alt="DeepVibes" /></figure>
+  <div class="prose"><p>Pushbroom cameras build an image line by line as the satellite moves along its orbit. Tiny oscillations of the
+satellite’s attitude during acquisition, the <em>micro-vibrations</em>, make each line look in a slightly different direction:
+straight roads become wavy and the spectral bands, which sit at different places on the focal plane, no longer line up.</p>
+
+<p>DeepVibes models the acquisition process with the satellite attitude as a parameter, then corrects the images in two
+stages: an identification network estimates the attitude, and a deep unrolled network uses it to reconstruct the image.
+We found that the geometry of the focal plane plays a key role in making the vibrations identifiable.</p>
+
+<h2 id="interactive-demo">Interactive demo</h2>
+
+<figure class="compare" id="demo" data-compare="" data-focus="0.47,0.47">
+  <div class="compare-stage" tabindex="0" aria-label="Image comparison. Use + and - to zoom, arrow keys to pan, 0 to reset.">
+    <div class="compare-layer">
+      <img src="/assets/img/deepvibes/reconstruction.webp" alt="DeepVibes" draggable="false" />
+    </div>
+    <div class="compare-layer compare-before">
+      <img src="/assets/img/deepvibes/vibrated.webp" alt="Vibrated" draggable="false" />
+    </div>
+    <span class="compare-label compare-label-before">Vibrated</span>
+    <span class="compare-label compare-label-after">DeepVibes</span>
+    <div class="compare-divider" role="slider" tabindex="0" aria-label="Divider position" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+      <span class="compare-handle"><i class="fa-solid fa-left-right"></i></span>
+    </div>
+  </div>
+  <div class="compare-toolbar">
+    <button type="button" class="pill" data-action="zoom-out" aria-label="Zoom out"><i class="fa-solid fa-minus"></i></button>
+    <span class="compare-zoom" aria-live="polite">1.0×</span>
+    <button type="button" class="pill" data-action="zoom-in" aria-label="Zoom in"><i class="fa-solid fa-plus"></i></button>
+    <button type="button" class="pill" data-action="focus">Inspect detail</button>
+    <button type="button" class="pill" data-action="reset">Reset</button>
+    <span class="compare-hint">Drag the divider · scroll or pinch to zoom · drag to pan</span>
+  </div>
   
-  <div class="prose">
+  <figcaption><p>Sentinel-2B scene. Drag the divider to compare the image affected by micro-vibrations (left) with the DeepVibes reconstruction (right); zoom in to see the colour fringes and wobbly edges disappear.</p>
+</figcaption>
+  
+</figure>
+<script src="/assets/js/compare.js" defer=""></script>
+
 </div>
 </article>
 </main>
