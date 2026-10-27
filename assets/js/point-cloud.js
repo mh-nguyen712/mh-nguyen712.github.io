@@ -1,6 +1,6 @@
 // Interactive point-cloud background: a diffusion model, live.
-// Points start as Gaussian noise and are "denoised" into a dataset (Swiss roll, a neural network, a Gaussian
-// mixture), then noised back and morphed into the next one. Positions follow the DDPM forward marginal
+// Points start as Gaussian noise and are "denoised" into a dataset (Swiss roll, a neural network, an Airy pattern,
+// a Gaussian mixture), then noised back and morphed into the next one. Positions follow the DDPM forward marginal
 //   x_t = sqrt(abar_t) * x_0 + sqrt(1 - abar_t) * eps     (cosine schedule)
 // The cloud turns toward the mouse, and points near the cursor are pushed away and spring back.
 // Colour comes from the --cloud CSS variable, so it follows the light/dark theme.
@@ -14,7 +14,6 @@
   const REPEL_RADIUS = 130;
   const LINK_RADIUS = 110;
   const NOISE_STD = 0.55;
-  const SHOW_LABEL = true; // small "denoising → swiss roll · t = 0.42" caption under the cloud (desktop only)
 
   // Seconds spent in each phase of one cycle.
   const PHASES = [
@@ -92,6 +91,61 @@
     return out;
   }
 
+  // Bessel function J1 (rational/asymptotic approximation from Numerical Recipes).
+  function besselJ1(x) {
+    const ax = Math.abs(x);
+    if (ax < 8) {
+      const y = x * x;
+      const p = x * (72362614232.0 + y * (-7895059235.0 + y * (242396853.1 + y * (-2972611.439 + y * (15704.4826 + y * -30.16036606)))));
+      const q = 144725228442.0 + y * (2300535178.0 + y * (18583304.74 + y * (99447.43394 + y * (376.9991397 + y))));
+      return p / q;
+    }
+    const z = 8 / ax;
+    const y = z * z;
+    const xx = ax - 2.356194491;
+    const p = 1 + y * (0.183105e-2 + y * (-0.3516396496e-4 + y * (0.2457520174e-5 + y * -0.240337019e-6)));
+    const q = 0.04687499995 + y * (-0.2002690873e-3 + y * (0.8449199096e-5 + y * (-0.88228987e-6 + y * 0.105787412e-6)));
+    const ans = Math.sqrt(0.636619772 / ax) * (Math.cos(xx) * p - z * Math.sin(xx) * q);
+    return x < 0 ? -ans : ans;
+  }
+
+  // Airy pattern (in-focus PSF of a circular aperture) drawn as an intensity surface over the focal plane:
+  //   I(v) = (2 J1(v) / v)^2,  height ∝ I^gamma (gamma < 1 so the faint diffraction rings stay visible).
+  // Points sit on concentric rings, slightly denser near the centre to resolve the main lobe.
+  function airyPattern(count) {
+    const V_MAX = 13.3; // out to the 4th dark ring
+    const GAMMA = 0.35;
+    const HEIGHT = 1.2;
+    const RINGS = 40;
+    const radii = Array.from({ length: RINGS }, (_, k) => ((k + 1) / RINGS) ** 1.25);
+    const radiusSum = radii.reduce((a, b) => a + b, 0);
+    const out = new Float32Array(count * 3);
+    let i = 0;
+    const put = (x, z, r) => {
+      if (i >= count) return;
+      const v = r * V_MAX;
+      const intensity = v < 1e-9 ? 1 : ((2 * besselJ1(v)) / v) ** 2;
+      out[i * 3] = x;
+      out[i * 3 + 1] = 0.45 - HEIGHT * intensity ** GAMMA; // screen y points down, so the peak points up
+      out[i * 3 + 2] = z;
+      i++;
+    };
+    put(0, 0, 0);
+    for (const r of radii) {
+      const m = Math.max(3, Math.floor((r / radiusSum) * (count - 1)));
+      for (let j = 0; j < m; j++) {
+        const a = (j / m) * 2 * Math.PI;
+        put(r * Math.cos(a), r * Math.sin(a), r);
+      }
+    }
+    // Rounding can leave a few slots: park them on the outer rim.
+    for (; i < count; ) {
+      const a = Math.random() * 2 * Math.PI;
+      put(Math.cos(a), Math.sin(a), 1);
+    }
+    return out;
+  }
+
   // A small MLP: layers of nodes (grids in the y-z plane) along x, with edges drawn as dotted lines.
   function neuralNetwork(count) {
     const layers = [3, 4, 5, 4, 2]; // grid side length per layer
@@ -136,6 +190,7 @@
     shapes = [
       { name: "swiss roll", data: swissRoll(n) },
       { name: "neural network", data: neuralNetwork(n) },
+      { name: "airy pattern", data: airyPattern(n) },
       { name: "gaussian mixture", data: gaussianMixture(n) },
     ];
     offsets = new Float32Array(n * 4);
@@ -295,16 +350,6 @@
         ctx.lineTo(near[j], near[j + 1]);
         ctx.stroke();
       }
-    }
-
-    if (SHOW_LABEL && !mobile && !reduceMotion) {
-      const phase = PHASES[phaseIndex].name;
-      const target = shapes[shapeIndex].name;
-      const text = phase === "sample" ? `x₀ ~ ${target}` : phase === "noise" ? `x₁ ~ N(0, I)` : `${phase} → ${target} · t = ${t.toFixed(2)}`;
-      ctx.font = "500 11px 'Geist Mono', ui-monospace, monospace";
-      ctx.textAlign = "center";
-      ctx.fillStyle = `rgba(${color}, ${(maxAlpha * 0.7).toFixed(3)})`;
-      ctx.fillText(text, cx, Math.min(cy + radius * 1.3, height - 24));
     }
   }
 
