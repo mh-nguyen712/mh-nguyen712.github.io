@@ -6,28 +6,39 @@
 // ---------------------------------------------------------------------------
 
 :root {
-  --bg: #0e1116;
-  --surface: #151a21;
-  --surface-2: #1c222b;
-  --border: #262d38;
-  --text: #e4e7ec;
-  --muted: #8f99a8;
-  --accent: #6cb6ff;
-  --accent-soft: rgba(108, 182, 255, 0.12);
+  --bg: #07090d;
+  --glow: rgba(94, 231, 255, 0.07);
+  --surface: rgba(17, 21, 28, 0.72);
+  --surface-2: rgba(28, 34, 43, 0.75);
+  --border: rgba(148, 163, 184, 0.16);
+  --text: #e8eaee;
+  --muted: #8b94a3;
+  --accent: #5ee7ff;
+  --accent-soft: rgba(94, 231, 255, 0.1);
   --me: #ffffff;
+  // Point-cloud background (assets/js/point-cloud.js): "r, g, b" and max opacity
+  --cloud: 94, 231, 255;
+  --cloud-alpha: 0.75;
   color-scheme: dark;
+
+  --font-body: "Geist", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
 :root[data-theme="light"] {
-  --bg: #fbfbfa;
-  --surface: #ffffff;
-  --surface-2: #f2f3f5;
-  --border: #e3e5e8;
-  --text: #1c1f24;
-  --muted: #5e6672;
-  --accent: #0b62c4;
-  --accent-soft: rgba(11, 98, 196, 0.08);
+  --bg: #f7f6f2;
+  --glow: rgba(11, 98, 196, 0.06);
+  --surface: rgba(255, 255, 255, 0.78);
+  --surface-2: rgba(236, 238, 241, 0.85);
+  --border: rgba(28, 31, 36, 0.12);
+  --text: #16181c;
+  --muted: #5c6470;
+  --accent: #0a5bb8;
+  --accent-soft: rgba(10, 91, 184, 0.08);
   --me: #000000;
+  --cloud: 10, 91, 184;
+  --cloud-alpha: 0.55;
   color-scheme: light;
 }
 
@@ -50,15 +61,10 @@ html {
 
 body {
   margin: 0;
-  background: var(--bg);
+  background: radial-gradient(1200px 700px at 78% 30%, var(--glow), transparent 70%), var(--bg);
+  background-attachment: fixed;
   color: var(--text);
-  font-family:
-    "Inter",
-    system-ui,
-    -apple-system,
-    "Segoe UI",
-    Roboto,
-    sans-serif;
+  font-family: var(--font-body);
   font-size: 16px;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
@@ -70,6 +76,25 @@ body {
 main {
   flex: 1;
   width: 100%;
+}
+
+// Fixed canvas behind everything; content sits on top.
+#point-cloud {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+main,
+.site-footer {
+  position: relative;
+  z-index: 1;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--bg);
 }
 
 a {
@@ -84,13 +109,14 @@ a {
 h1,
 h2,
 h3 {
-  line-height: 1.25;
-  font-weight: 600;
-  letter-spacing: -0.015em;
+  font-family: var(--font-display);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
 }
 
 h1 {
-  font-size: 2rem;
+  font-size: 2.2rem;
   margin: 0 0 0.25rem;
 }
 
@@ -117,6 +143,18 @@ pre {
   font-size: 0.9rem;
 }
 
+// Small technical labels: dates, years, nav, badges.
+.mono,
+time,
+.years,
+.badge,
+.pill,
+.site-nav a,
+.section-title .more,
+.back {
+  font-family: var(--font-mono);
+}
+
 .lead {
   color: var(--muted);
   margin: 0.25rem 0 0;
@@ -130,8 +168,9 @@ pre {
   position: sticky;
   top: 0;
   z-index: 10;
-  background: color-mix(in srgb, var(--bg) 85%, transparent);
-  backdrop-filter: blur(8px);
+  background: color-mix(in srgb, var(--bg) 70%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
 }
 
@@ -159,7 +198,10 @@ pre {
 }
 
 .site-name {
-  font-weight: 600;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
   color: var(--text);
   &:hover {
     text-decoration: none;
@@ -174,7 +216,8 @@ pre {
 
   a {
     color: var(--muted);
-    font-size: 0.92rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.02em;
     padding: 0.3rem 0.55rem;
     border-radius: 6px;
     &:hover {
@@ -183,7 +226,7 @@ pre {
       background: var(--surface-2);
     }
     &[aria-current="page"] {
-      color: var(--text);
+      color: var(--accent);
     }
   }
 }
@@ -215,7 +258,8 @@ pre {
 }
 
 .site-footer {
-  margin-top: 4rem;
+  margin-top: 5rem;
+  background: color-mix(in srgb, var(--bg) 70%, transparent);
   padding: 1.5rem 0;
   border-top: 1px solid var(--border);
   color: var(--muted);
@@ -232,7 +276,7 @@ pre {
 // ---------------------------------------------------------------------------
 
 .page-header {
-  margin: 3rem 0 2rem;
+  margin: 4rem 0 2.5rem;
 }
 
 .section-title {
@@ -240,15 +284,14 @@ pre {
   align-items: baseline;
   justify-content: space-between;
   gap: 1rem;
-  font-size: 1.15rem;
-  margin: 3rem 0 1rem;
-  padding-bottom: 0.5rem;
+  font-size: 1.35rem;
+  margin: 3.5rem 0 1rem;
+  padding-bottom: 0.6rem;
   border-bottom: 1px solid var(--border);
 
   .more {
-    font-size: 0.85rem;
-    font-weight: 400;
-    letter-spacing: 0;
+    font-size: 0.75rem;
+    letter-spacing: 0.02em;
   }
 }
 
@@ -269,15 +312,25 @@ pre {
   display: grid;
   grid-template-columns: 1fr 200px;
   gap: 2.5rem;
-  margin-top: 3.5rem;
+  margin-top: 5rem;
+  align-items: start;
 
   h1 {
-    font-size: 2.3rem;
+    font-size: clamp(2.2rem, 6vw, 3.1rem);
+    line-height: 1.05;
+    letter-spacing: -0.05em;
+    margin-bottom: 1rem;
   }
   .subtitle {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
     color: var(--accent);
-    margin: 0 0 1.25rem;
-    font-weight: 500;
+    margin: 0 0 1.5rem;
+  }
+  .prose {
+    font-size: 1.05rem;
   }
 }
 
@@ -298,6 +351,10 @@ pre {
   border-radius: 50%;
   object-fit: cover;
   border: 1px solid var(--border);
+  box-shadow:
+    0 0 0 6px color-mix(in srgb, var(--bg) 60%, transparent),
+    0 0 0 7px var(--accent-soft),
+    0 0 60px var(--accent-soft);
 }
 
 .social {
@@ -315,9 +372,16 @@ pre {
     padding: 0.35rem 0.75rem;
     border: 1px solid var(--border);
     border-radius: 999px;
+    background: var(--surface);
+    backdrop-filter: blur(6px);
     color: var(--text);
     font-size: 0.88rem;
+    transition:
+      border-color 0.2s,
+      color 0.2s,
+      transform 0.2s;
     &:hover {
+      transform: translateY(-1px);
       border-color: var(--accent);
       color: var(--accent);
       text-decoration: none;
@@ -370,7 +434,7 @@ pre {
 
   time {
     color: var(--muted);
-    font-size: 0.88rem;
+    font-size: 0.78rem;
     font-variant-numeric: tabular-nums;
     padding-top: 0.1rem;
   }
@@ -394,9 +458,9 @@ pre {
 
 .badge {
   display: inline-block;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
   padding: 0.1rem 0.45rem;
   border-radius: 4px;
   background: var(--accent-soft);
@@ -413,15 +477,17 @@ pre {
 }
 
 .pill {
-  font: inherit;
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   line-height: 1.4;
   padding: 0.15rem 0.6rem;
   border: 1px solid var(--border);
   border-radius: 999px;
-  background: transparent;
+  background: var(--surface);
   color: var(--muted);
   cursor: pointer;
+  transition:
+    color 0.15s,
+    border-color 0.15s;
   &:hover,
   &.active {
     color: var(--accent);
@@ -460,9 +526,10 @@ pre {
 // ---------------------------------------------------------------------------
 
 h2.bibliography {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  color: var(--accent);
   margin: 2rem 0 0.5rem;
 }
 
@@ -510,7 +577,8 @@ ol.bibliography {
 }
 
 .pub-title {
-  font-weight: 600;
+  font-weight: 500;
+  font-size: 1.02rem;
   line-height: 1.4;
 }
 
@@ -570,15 +638,24 @@ ol.bibliography {
 
 .card {
   background: var(--surface);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border: 1px solid var(--border);
-  border-radius: 10px;
+  border-radius: 14px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  transition:
+    border-color 0.25s,
+    transform 0.25s;
+  &:hover {
+    border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+    transform: translateY(-2px);
+  }
 
   h3 {
-    margin: 0 0 0.2rem;
-    font-size: 1.05rem;
+    margin: 0 0 0.3rem;
+    font-size: 1.1rem;
     a {
       color: var(--text);
     }
@@ -673,7 +750,7 @@ ol.bibliography {
   }
   .years {
     color: var(--muted);
-    font-size: 0.88rem;
+    font-size: 0.78rem;
     white-space: nowrap;
     font-variant-numeric: tabular-nums;
   }
@@ -691,7 +768,10 @@ ol.bibliography {
   margin: 0;
 
   dt {
-    font-weight: 600;
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 500;
+    line-height: 1.5;
   }
   dd {
     margin: 0;
@@ -735,6 +815,7 @@ ol.bibliography {
     --border: #ccc;
     --me: #000;
   }
+  #point-cloud,
   .site-header,
   .site-footer,
   .links,

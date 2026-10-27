@@ -4,9 +4,11 @@
     {% include head.html %}
   </head>
   <body>
+    <canvas id="point-cloud" aria-hidden="true"></canvas>
     {% include header.html %}
     <main class="container">{{ content }}</main>
     {% include footer.html %}
     <script src="{{ '/assets/js/site.js' | relative_url }}" defer></script>
+    <script src="{{ '/assets/js/point-cloud.js' | relative_url }}" defer></script>
   </body>
 </html>
