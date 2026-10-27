@@ -1,5 +1,11 @@
-# News items. Add a new entry anywhere (the list is sorted by date automatically).
+# News items, newest first: add new entries at the top (they are shown in this order).
 # `text` is Markdown: links like [ICML 2026](https://icml.cc/) work.
+
+- date: 2026-09-21
+  text: >-
+    Gave a talk on "An analytic theory of convolutional neural network inverse problems solvers" at the
+    [Workshop on Principles and Methods in Generative Modeling of Complex Processes](https://wgmcp2026.sciencesconf.org/)
+    at IRIT, Toulouse.
 
 - date: 2026-07-08
   text: >-
@@ -57,10 +63,11 @@
     New preprint: "Comparing Plug-and-Play and Unrolled networks" — a review of both approaches in a Bayesian framework,
     relating each to a statistical estimator.
 
-- date: 2024-09-27
+- date: 2024-10-28
   text: >-
-    Participating in the [DeepInverse](https://deepinv.github.io/deepinv/) hackathon at
-    [CIRM](https://conferences.cirm-math.fr/3396.html), Marseille, 28–29 November 2024.
+    Participating in the [DeepInverse hackathon](https://conferences.cirm-math.fr/3396.html) at CIRM, Marseille,
+    28–29 October 2024: two days with contributors from across Europe adding imaging operators and diffusion samplers to
+    [DeepInverse](https://deepinv.github.io/deepinv/).
 
 - date: 2024-06-16
   text: >-

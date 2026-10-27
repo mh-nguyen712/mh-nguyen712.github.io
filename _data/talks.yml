@@ -2,6 +2,13 @@
 # Fields: date (YYYY-MM or YYYY-MM-DD), type (Talk / Poster / Invited ...), title, event, event_url, location,
 #         slides / poster (file in assets/pdf/ or a full URL).
 
+- date: 2026-09-21
+  type: Talk
+  title: An analytic theory of convolutional neural network inverse problems solvers
+  event: Workshop on Principles and Methods in Generative Modeling of Complex Processes
+  event_url: https://wgmcp2026.sciencesconf.org/
+  location: IRIT, Toulouse, France
+
 - date: 2026-04
   type: Talk
   title: DeepInverse and Computational Imaging
