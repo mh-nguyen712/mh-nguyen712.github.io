@@ -1,0 +1,14 @@
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="site-name" href="{{ '/' | relative_url }}">{{ site.author.name }}</a>
+    <nav class="site-nav" aria-label="Main">
+      {% for item in site.nav %} {% assign active = false %} {% assign prefix = page.url | slice: 0, item.url.size %} {% if item.url == "/" %} {% if
+      page.url == "/" %}{% assign active = true %}{% endif %} {% elsif prefix == item.url %} {% assign active = true %} {% endif %}
+      <a href="{{ item.url | relative_url }}" {% if active %}aria-current="page" {% endif %}>{{ item.title }}</a>
+      {% endfor %}
+      <button class="theme-toggle" type="button" aria-label="Toggle light/dark theme" title="Toggle light/dark theme">
+        <i class="fa-solid fa-sun icon-light"></i><i class="fa-solid fa-moon icon-dark"></i>
+      </button>
+    </nav>
+  </div>
+</header>

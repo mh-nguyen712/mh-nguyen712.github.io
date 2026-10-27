@@ -1,0 +1,10 @@
+{% comment %} Usage: {% include news.html limit=5 %} — omit limit to show everything. {% endcomment %} {% assign limit = include.limit | default:
+site.data.news.size %}
+<ul class="news">
+  {% for item in site.data.news limit: limit %}
+  <li>
+    <time datetime="{{ item.date | date: '%Y-%m-%d' }}">{{ item.date | date: "%b %-d, %Y" }}</time>
+    <div class="md">{{ item.text | markdownify }}</div>
+  </li>
+  {% endfor %}
+</ul>

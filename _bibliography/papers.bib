@@ -12,7 +12,8 @@
   pages       = {1-9},
   keywords    = {Cameras;Satellites;Noise;Vibrations;Orbits;Mathematical models;Charge coupled devices;Convolutional neural network (CNN);jitter;microvibration;pushbroom;satellite imaging;unrolled network},
   doi         = {10.1109/TGRS.2024.3415372},
-  pdf         = pub_Vibrations.pdf,
+  pdf         = {pub_vibrations.pdf},
+  selected    = {true},
   abstract    = {In this paper, we propose new algorithms for
                  estimating micro-vibrations and correcting its effects in
                  satellite imaging with linear pushbroom camera. We first
@@ -32,7 +33,6 @@
   preview     = {vibration.gif}
 }
 
-% html_embed={micro_vibrations.html}
 
 
 
@@ -41,7 +41,7 @@
   author      = {Nguyen, Minh Hai and Weiss, Pierre},
   year        = {2024},
   journal     = {preprint},
-  pdf         = pub_pnp_unrolled.pdf,
+  pdf         = {pub_pnp_unrolled.pdf},
   abstract    = {Plug-and-play and unrolled methods are among
                  the most popular and efficient approaches for solving inverse
                  problems in imaging. In this paper, we review their similarities
@@ -56,8 +56,10 @@
 }
 
 
-@misc{nguyen2025diffusionpriorlandscapesshape,
-  title         = {A Morse-Bott Framework for Blind Inverse Problems Local Recovery Guarantees and the Failure of the MAP},
+@article{nguyen2025diffusionpriorlandscapesshape,
+  title         = {A Morse-Bott Framework for Blind Inverse Problems: Local Recovery Guarantees and the Failure of the MAP},
+  journal       = {SIAM Journal on Imaging Sciences (accepted)},
+  selected      = {true},
   author        = {Minh-Hai Nguyen and Edouard Pauwels and Pierre Weiss},
   year          = {2025},
   eprint        = {2508.02923},
@@ -65,27 +67,27 @@
   primaryclass  = {cs.CV},
   abstract      = {Maximum A Posteriori (MAP) estimation is a cornerstone framework for blind inverse problems, where an image and a forward operator are jointly
                    estimated as the maximizers of a posterior distribution. In applications such as blind deblurring, this principle is used to recover sharp images
-                   from degraded observations. In this paper, we analyze the recovery guarantees of MAP-based methods by adopting a \emph{Morse--Bott framework}. We
+                   from degraded observations. In this paper, we analyze the recovery guarantees of MAP-based methods by adopting a Morse--Bott framework. We
                    model the image potential as a Morse--Bott function, where natural images are modeled as residing locally on a critical submanifold. This means
-                   that while the potential is locally flat along the ``natural'' directions of the image manifold, it is strictly convex in the directions normal to it.
+                   that while the potential is locally flat along the “natural” directions of the image manifold, it is strictly convex in the directions normal to it.
                    We demonstrate that this Morse--Bott hypothesis aligns with the structural properties of state-of-the-art learned priors, a finding we validate
                    through an experimental analysis of the potential landscape and its Hessian spectrum.
                    Our theoretical results show that, in a neighborhood of the ground-truth image and operator, the posterior admits local minimizers that are
                    stable both with respect to initialization (gradient descents converge to the same minimizer) and to small perturbations of the data (solutions
                    vary smoothly with the observations). This local stability potentially provides a theoretical justification for the empirical success of well designed
                    gradient-based optimization in these settings.
-                   However, we also demonstrate that this local stability is a \textbf{local} property: the ``blurry trap'', well-known for sparse priors in blind
+                   However, we also demonstrate that this local stability is a local property: the “blurry trap”, well-known for sparse priors in blind
                    deconvolution, persists even with state-of-the-art learned priors.
                    Our findings demonstrate that the failure of MAP in blind deconvolution is not a limitation of prior quality, but an intrinsic characteristic of
                    the landscape.
                    We conclude that successful recovery depends on strategic initialization around favorable local minima. We describe an heuristic strategy which is validated with
                    numerical experiments on both synthetic and real-world data.
-                   The code for reproducing the numerical experiments in this paper is available at \url{https://github.com/mh-nguyen712/blind_deblur_diffusion}
+                   The code for reproducing the numerical experiments in this paper is available at https://github.com/mh-nguyen712/blind_deblur_diffusion
                    },
   url           = {https://arxiv.org/abs/2508.02923},
   pdf           = {https://www.arxiv.org/pdf/2508.02923},
   bibtex_show   = {true},
-  abbr          = {arxiv},
+  abbr          = {SIIMS},
   preview       = {kohler_deblurred.gif},
   code          = {https://github.com/mh-nguyen712/blind_deblur_diffusion}
 }
@@ -104,6 +106,7 @@
   archiveprefix = {arXiv},
   primaryclass  = {eess.IV},
   pdf           = {https://arxiv.org/abs/2505.20160},
+  abbr          = {arXiv},
   preview       = {deepinv_logo.png},
   website       = {https://deepinv.github.io/deepinv/},
   code          = {https://github.com/deepinv/deepinv},
@@ -116,6 +119,7 @@
   author        = {Nguyen, Minh Hai and Do, Quoc Bao and Pauwels, Edouard and Weiss, Pierre},
   booktitle     = {Proceedings of the 43rd International Conference on Machine Learning (ICML)},
   abbr          = {ICML},
+  selected      = {true},
   year          = {2026},
   eprint        = {2601.10334},
   archiveprefix = {arXiv},
@@ -123,5 +127,5 @@
   url           = {https://arxiv.org/abs/2601.10334},
   code          = {https://github.com/mh-nguyen712/analytical_mmse},
   bibtex_show   = {true},
-  abstract      = {Supervised convolutional neural networks (CNNs) are widely used to solve imaging inverse problems, achieving state-of-the-art performance in numerous applications. However, despite their empirical success, these methods are poorly understood from a theoretical perspective and often treated as black boxes. To bridge this gap, we analyze trained neural networks through the lens of the Minimum Mean Square Error (MMSE) estimator, incorporating functional constraints that capture two fundamental inductive biases of CNNs: translation equivariance and locality via finite receptive fields. Under the empirical training distribution, we derive an analytic, interpretable, and tractable formula for this constrained variant, termed Local-Equivariant MMSE (LE-MMSE). Through extensive numerical experiments across various inverse problems (denoising, inpainting, deconvolution), datasets (FFHQ, CIFAR-10, FashionMNIST), and architectures (U-Net, ResNet, PatchMLP), we demonstrate that our theory matches the neural networks outputs (PSNR $\gtrsim 25$dB). Furthermore, we provide insights into the differences between physics-aware and physics-agnostic estimators, the impact of high-density regions in the training (patch) distribution, and the influence of other factors (dataset size, patch size, etc).}
+  abstract      = {Supervised convolutional neural networks (CNNs) are widely used to solve imaging inverse problems, achieving state-of-the-art performance in numerous applications. However, despite their empirical success, these methods are poorly understood from a theoretical perspective and often treated as black boxes. To bridge this gap, we analyze trained neural networks through the lens of the Minimum Mean Square Error (MMSE) estimator, incorporating functional constraints that capture two fundamental inductive biases of CNNs: translation equivariance and locality via finite receptive fields. Under the empirical training distribution, we derive an analytic, interpretable, and tractable formula for this constrained variant, termed Local-Equivariant MMSE (LE-MMSE). Through extensive numerical experiments across various inverse problems (denoising, inpainting, deconvolution), datasets (FFHQ, CIFAR-10, FashionMNIST), and architectures (U-Net, ResNet, PatchMLP), we demonstrate that our theory matches the neural networks outputs (PSNR ≳ 25 dB). Furthermore, we provide insights into the differences between physics-aware and physics-agnostic estimators, the impact of high-density regions in the training (patch) distribution, and the influence of other factors (dataset size, patch size, etc).}
 }

@@ -1,0 +1,68 @@
+# News items. Add a new entry anywhere (the list is sorted by date automatically).
+# `text` is Markdown: links like [ICML 2026](https://icml.cc/) work.
+
+- date: 2026-07-08
+  text: >-
+    I will be attending [ICML 2026](https://icml.cc/) in Seoul, South Korea, 8–14 July.
+    Come say hello at [our poster](https://icml.cc/virtual/2026/poster/65119) — happy to chat about collaborations or research ideas.
+
+- date: 2026-06-21
+  text: >-
+    Attending the [Peyresq 26 summer school](https://www.gretsi.fr/peyresq) on generative models:
+    a week of lectures and tutorials on diffusion models, flow matching and optimal transport.
+
+- date: 2026-06-20
+  text: >-
+    Our paper "A Morse-Bott Framework for Blind Inverse Problems: Local Recovery Guarantees and the Failure of the MAP"
+    has been accepted in the SIAM Journal on Imaging Sciences (SIIMS).
+
+- date: 2026-04-30
+  text: >-
+    Our paper "An analytic theory of convolutional neural network inverse problems solvers" has been accepted at
+    [ICML 2026](https://icml.cc/Conferences/2026).
+
+- date: 2026-04-07
+  text: >-
+    With Andrew Wang, presenting [DeepInverse](https://deepinv.github.io/deepinv/) at the
+    [PyTorch Conference Europe 2026](https://events.linuxfoundation.org/pytorch-conference-europe/program/schedule/) in Paris.
+
+- date: 2026-01-04
+  text: >-
+    New preprint: "An analytic theory of convolutional neural network inverse problems solvers".
+    Under two structural constraints (translation equivariance and locality), we derive closed-form, interpretable
+    expressions for trained CNN solvers and validate them across architectures and inverse problems.
+
+- date: 2025-11-05
+  text: >-
+    [DeepInverse](https://deepinv.github.io/deepinv/) is now officially part of the
+    [PyTorch Ecosystem](https://pytorch.org/blog/deepinverse-joins-pytorch-ecosystem/).
+
+- date: 2025-08-04
+  text: >-
+    New preprint: "A Morse-Bott Framework for Blind Inverse Problems: Local Recovery Guarantees and the Failure of the MAP",
+    studying blind deconvolution with state-of-the-art diffusion priors.
+
+- date: 2025-03-17
+  text: >-
+    Presenting a [poster](/assets/pdf/poster_iabm_2025.pdf) on blind deconvolution in optical microscopy at
+    [IABM 2025](https://iabm2025.sciencesconf.org/), and a [talk](/assets/pdf/presentation_phd_seminar_irit_2025_deepblur.pdf) at the IRIT PhD seminar.
+
+- date: 2024-11-27
+  text: >-
+    Representing the [DeepInverse](https://deepinv.github.io/deepinv/) community to receive the
+    [Open Science Prize](https://www.ouvrirlascience.fr/category/prix-logiciel-libre/) from the French Ministry of Higher Education and Research.
+
+- date: 2024-11-24
+  text: >-
+    New preprint: "Comparing Plug-and-Play and Unrolled networks" — a review of both approaches in a Bayesian framework,
+    relating each to a statistical estimator.
+
+- date: 2024-09-27
+  text: >-
+    Participating in the [DeepInverse](https://deepinv.github.io/deepinv/) hackathon at
+    [CIRM](https://conferences.cirm-math.fr/3396.html), Marseille, 28–29 November 2024.
+
+- date: 2024-06-16
+  text: >-
+    Our paper "DeepVibes: Correcting Micro-Vibrations in Satellite Imaging with Pushbroom Cameras" has been accepted in
+    IEEE Transactions on Geoscience and Remote Sensing.

@@ -1,0 +1,18 @@
+{% comment %} Renders a list of {title, org, years, details[]} entries. Usage: {% include entries.html items=site.data.cv.education %} {% endcomment
+%}
+<ul class="entries">
+  {% for e in include.items %}
+  <li>
+    <div class="entry-head"><strong>{{ e.title }}</strong><span class="years">{{ e.years }}</span></div>
+    {% if e.org %}
+    <div class="meta">{{ e.org }}</div>
+    {% endif %} {% if e.details %}
+    <ul>
+      {% for d in e.details %}
+      <li class="md">{{ d | markdownify }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </li>
+  {% endfor %}
+</ul>

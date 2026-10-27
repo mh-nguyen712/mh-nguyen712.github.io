@@ -1,0 +1,62 @@
+---
+---
+
+{% comment %} Template for one entry of _bibliography/papers.bib (used by jekyll-scholar). Supported custom fields: abbr, preview, pdf, code, website,
+html (demo), slides, poster, selected, bibtex_show. Local files: pdf/slides/poster → assets/pdf/, preview → assets/img/publication_preview/, html →
+assets/html/. {% endcomment %}
+<div class="pub" id="{{ entry.key }}">
+  <div class="pub-thumb">
+    {% if entry.preview %} {% assign src = entry.preview %} {% unless src contains "://" %}{% assign src = src | prepend:
+    "/assets/img/publication_preview/" | relative_url %}{% endunless %}
+    <img src="{{ src }}" alt="" loading="lazy" />
+    {% else %}
+    <span>{{ entry.abbr | default: entry.year }}</span>
+    {% endif %}
+  </div>
+
+  <div class="pub-body">
+    <div class="pub-title">{{ entry.title }}</div>
+
+    <div class="pub-authors">
+      {%- for author in entry.author_array -%} {%- assign is_me = false -%} {%- if site.scholar.last_name contains author.last and
+      site.scholar.first_name contains author.first -%} {%- assign is_me = true -%} {%- endif -%} {%- unless forloop.first -%}{%- if forloop.last
+      -%}{% if forloop.length > 2 %},{% endif %} and {% else %}, {% endif -%}{%- endunless -%} {%- if is_me -%}<strong class="me"
+        >{{ author.first }} {{ author.prefix | append: " " | lstrip }}{{ author.last }}</strong
+      >{%- else -%}{{ author.first }} {{ author.prefix | append: " " | lstrip }}{{ author.last }}{%- endif -%} {%- endfor -%}
+    </div>
+
+    {% if entry.type == "article" %} {% assign venue = entry.journal %} {% elsif entry.type == "inproceedings" or entry.type == "incollection" %} {%
+    assign venue = entry.booktitle %} {% elsif entry.type == "phdthesis" or entry.type == "mastersthesis" %} {% assign venue = entry.school %} {%
+    elsif entry.eprint %} {% assign venue = "arXiv preprint" %} {% else %} {% assign venue = entry.howpublished %} {% endif %}
+    <div class="pub-venue">
+      {% if entry.abbr %}<span class="badge">{{ entry.abbr }}</span>{% endif %} {% if venue %}<em>{{ venue }}</em>, {% endif %}{{ entry.year }}
+    </div>
+
+    <div class="links">
+      {% if entry.abstract %}<button type="button" class="pill" data-toggle="abstract-{{ entry.key }}">Abstract</button>{% endif %} {% if entry.pdf %}
+      {% assign href = entry.pdf %} {% unless href contains "://" %}{% assign href = href | prepend: "/assets/pdf/" | relative_url %}{% endunless %}
+      <a class="pill" href="{{ href }}">PDF</a>
+      {% endif %} {% if entry.eprint %}<a class="pill" href="https://arxiv.org/abs/{{ entry.eprint }}">arXiv</a>{% endif %} {% if entry.doi %}<a
+        class="pill"
+        href="https://doi.org/{{ entry.doi }}"
+        >DOI</a
+      >{% endif %} {% if entry.url and entry.eprint == nil and entry.doi == nil %}<a class="pill" href="{{ entry.url }}">Link</a>{% endif %} {% if
+      entry.code %}<a class="pill" href="{{ entry.code }}">Code</a>{% endif %} {% if entry.website %}<a class="pill" href="{{ entry.website }}"
+        >Website</a
+      >{% endif %} {% if entry.html %} {% assign href = entry.html %} {% unless href contains "://" %}{% assign href = href | prepend: "/assets/html/"
+      | relative_url %}{% endunless %}
+      <a class="pill" href="{{ href }}">Demo</a>
+      {% endif %} {% for kind in "slides,poster" | split: "," %} {% if entry[kind] %} {% assign href = entry[kind] %} {% unless href contains "://"
+      %}{% assign href = href | prepend: "/assets/pdf/" | relative_url %}{% endunless %}
+      <a class="pill" href="{{ href }}">{{ kind | capitalize }}</a>
+      {% endif %} {% endfor %} {% if entry.bibtex_show %}<button type="button" class="pill" data-toggle="bibtex-{{ entry.key }}">BibTeX</button>{%
+      endif %}
+    </div>
+
+    {% if entry.abstract %}
+    <div class="pub-extra" id="abstract-{{ entry.key }}" hidden><p>{{ entry.abstract }}</p></div>
+    {% endif %} {% if entry.bibtex_show %}
+    <div class="pub-extra" id="bibtex-{{ entry.key }}" hidden><pre>{{ entry.bibtex | hideCustomBibtex | xml_escape }}</pre></div>
+    {% endif %}
+  </div>
+</div>

@@ -1,0 +1,30 @@
+---
+layout: default
+---
+
+<section class="intro">
+  <div class="intro-text">
+    <h1>{{ site.author.name }}</h1>
+    {% if page.subtitle %}
+    <p class="subtitle">{{ page.subtitle }}</p>
+    {% endif %}
+    <div class="prose">{{ content }}</div>
+    {% include social.html %}
+  </div>
+  <div class="intro-aside">
+    {% if page.photo %}<img class="avatar" src="{{ page.photo | prepend: '/assets/img/' | relative_url }}" alt="Photo of {{ site.author.name }}" />{%
+    endif %} {% if page.address %}
+    <address>{{ page.address | newline_to_br }}</address>
+    {% endif %}
+  </div>
+</section>
+
+<section>
+  <h2 class="section-title">News <a class="more" href="{{ '/news/' | relative_url }}">All news →</a></h2>
+  {% include news.html limit=site.home_news_limit %}
+</section>
+
+<section>
+  <h2 class="section-title">Selected publications <a class="more" href="{{ '/publications/' | relative_url }}">All publications →</a></h2>
+  {% bibliography --query @*[selected=true] --group_by none %}
+</section>

@@ -1,0 +1,13 @@
+---
+title: Teaching
+permalink: /teaching/
+---
+
+<ul class="entries">
+  {% for t in site.data.teaching %}
+  <li>
+    <div class="entry-head"><strong>{{ t.course }}</strong><span class="years">{{ t.years }}</span></div>
+    <div class="meta">{{ t.role }} · {{ t.institution }}{% if t.hours %} · {{ t.hours }}{% endif %}</div>
+  </li>
+  {% endfor %}
+</ul>

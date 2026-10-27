@@ -1,0 +1,22 @@
+<ul class="talks">
+  {% for talk in site.data.talks %} {% assign d = talk.date | append: "" %} {% if d.size == 7 %}{% assign d = d | append: "-01" %}{% endif %}
+  <li>
+    <time datetime="{{ d }}">{{ d | date: "%b %Y" }}</time>
+    <div>
+      <div class="talk-title"><span class="badge">{{ talk.type }}</span> {{ talk.title }}</div>
+      <div class="meta">
+        {% if talk.event_url %}<a href="{{ talk.event_url }}">{{ talk.event }}</a>{% else %}{{ talk.event }}{% endif %}{% if talk.location %}, {{
+        talk.location }}{% endif %}
+      </div>
+      {% if talk.slides or talk.poster %}
+      <div class="links">
+        {% for kind in "slides,poster" | split: "," %} {% assign file = talk[kind] %} {% if file %} {% unless file contains "://" %}{% assign file =
+        file | prepend: "/assets/pdf/" | relative_url %}{% endunless %}
+        <a class="pill" href="{{ file }}">{{ kind | capitalize }}</a>
+        {% endif %} {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+  </li>
+  {% endfor %}
+</ul>

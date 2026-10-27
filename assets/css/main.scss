@@ -1,25 +1,749 @@
 ---
-# Only the main Sass file needs front matter (the dashes are enough)
 ---
-@charset "utf-8";
 
-// Dimensions
-$max-content-width: {{ site.max_width }};
+// ---------------------------------------------------------------------------
+// Theme tokens. Dark is the default; [data-theme="light"] switches to light.
+// ---------------------------------------------------------------------------
 
-@import
-  "variables",
-  "themes",
-  "layout",
-  "base",
-  "distill",
-  "cv",
-  "tabs",
-  "typograms",
-  "font-awesome/fontawesome",
-  "font-awesome/brands",
-  "font-awesome/solid",
-  "font-awesome/regular",
-  "tabler-icons/tabler-icons.scss",
-  "tabler-icons/tabler-icons-filled.scss",
-  "tabler-icons/tabler-icons-outline.scss"
-;
+:root {
+  --bg: #0e1116;
+  --surface: #151a21;
+  --surface-2: #1c222b;
+  --border: #262d38;
+  --text: #e4e7ec;
+  --muted: #8f99a8;
+  --accent: #6cb6ff;
+  --accent-soft: rgba(108, 182, 255, 0.12);
+  --me: #ffffff;
+  color-scheme: dark;
+}
+
+:root[data-theme="light"] {
+  --bg: #fbfbfa;
+  --surface: #ffffff;
+  --surface-2: #f2f3f5;
+  --border: #e3e5e8;
+  --text: #1c1f24;
+  --muted: #5e6672;
+  --accent: #0b62c4;
+  --accent-soft: rgba(11, 98, 196, 0.08);
+  --me: #000000;
+  color-scheme: light;
+}
+
+$max-width: 760px;
+$mobile: 640px;
+
+// ---------------------------------------------------------------------------
+// Base
+// ---------------------------------------------------------------------------
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family:
+    "Inter",
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+  width: 100%;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.25;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+h1 {
+  font-size: 2rem;
+  margin: 0 0 0.25rem;
+}
+
+img {
+  max-width: 100%;
+}
+
+pre {
+  overflow-x: auto;
+}
+
+.container {
+  max-width: $max-width;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+.muted,
+.meta {
+  color: var(--muted);
+}
+
+.meta {
+  font-size: 0.9rem;
+}
+
+.lead {
+  color: var(--muted);
+  margin: 0.25rem 0 0;
+}
+
+// ---------------------------------------------------------------------------
+// Header / footer
+// ---------------------------------------------------------------------------
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: color-mix(in srgb, var(--bg) 85%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 3.5rem;
+  flex-wrap: wrap;
+}
+
+@media (max-width: $mobile) {
+  .site-header {
+    position: static;
+  }
+  .header-inner {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    gap: 0.25rem;
+  }
+  .site-nav {
+    margin-left: -0.55rem;
+  }
+}
+
+.site-name {
+  font-weight: 600;
+  color: var(--text);
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.15rem;
+  flex-wrap: wrap;
+
+  a {
+    color: var(--muted);
+    font-size: 0.92rem;
+    padding: 0.3rem 0.55rem;
+    border-radius: 6px;
+    &:hover {
+      color: var(--text);
+      text-decoration: none;
+      background: var(--surface-2);
+    }
+    &[aria-current="page"] {
+      color: var(--text);
+    }
+  }
+}
+
+.theme-toggle {
+  margin-left: 0.35rem;
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  border-radius: 6px;
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+  &:hover {
+    color: var(--text);
+  }
+  .icon-dark {
+    display: none;
+  }
+}
+
+:root[data-theme="light"] .theme-toggle {
+  .icon-light {
+    display: none;
+  }
+  .icon-dark {
+    display: inline;
+  }
+}
+
+.site-footer {
+  margin-top: 4rem;
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 0.85rem;
+  a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Page structure
+// ---------------------------------------------------------------------------
+
+.page-header {
+  margin: 3rem 0 2rem;
+}
+
+.section-title {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 1.15rem;
+  margin: 3rem 0 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+
+  .more {
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+}
+
+.prose {
+  p {
+    margin: 0 0 1em;
+  }
+  strong {
+    font-weight: 600;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Home
+// ---------------------------------------------------------------------------
+
+.intro {
+  display: grid;
+  grid-template-columns: 1fr 200px;
+  gap: 2.5rem;
+  margin-top: 3.5rem;
+
+  h1 {
+    font-size: 2.3rem;
+  }
+  .subtitle {
+    color: var(--accent);
+    margin: 0 0 1.25rem;
+    font-weight: 500;
+  }
+}
+
+.intro-aside {
+  text-align: center;
+  address {
+    font-style: normal;
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-top: 1rem;
+    line-height: 1.5;
+  }
+}
+
+.avatar {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--border);
+}
+
+.social {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.35rem 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    color: var(--text);
+    font-size: 0.88rem;
+    &:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      text-decoration: none;
+    }
+  }
+}
+
+@media (max-width: $mobile) {
+  .intro {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  .intro-aside {
+    order: -1;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    address {
+      margin: 0;
+    }
+  }
+  .avatar {
+    width: 96px;
+    height: 96px;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// News & talks (date column + content)
+// ---------------------------------------------------------------------------
+
+.news,
+.talks {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  > li {
+    display: grid;
+    grid-template-columns: 7.5rem 1fr;
+    gap: 1rem;
+    padding: 0.7rem 0;
+    border-bottom: 1px solid var(--border);
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  time {
+    color: var(--muted);
+    font-size: 0.88rem;
+    font-variant-numeric: tabular-nums;
+    padding-top: 0.1rem;
+  }
+}
+
+.talk-title {
+  font-weight: 500;
+}
+
+@media (max-width: $mobile) {
+  .news > li,
+  .talks > li {
+    grid-template-columns: 1fr;
+    gap: 0.15rem;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Small UI pieces
+// ---------------------------------------------------------------------------
+
+.badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 0.1rem 0.45rem;
+  border-radius: 4px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  vertical-align: 0.1em;
+  font-style: normal;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+}
+
+.pill {
+  font: inherit;
+  font-size: 0.78rem;
+  line-height: 1.4;
+  padding: 0.15rem 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  &:hover,
+  &.active {
+    color: var(--accent);
+    border-color: var(--accent);
+    text-decoration: none;
+  }
+}
+
+.pill-accent {
+  color: var(--accent);
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: 8px;
+  background: var(--accent-soft);
+  border: 1px solid var(--accent);
+  font-size: 0.9rem;
+  &:hover {
+    text-decoration: none;
+    background: var(--accent);
+    color: var(--bg);
+  }
+}
+
+.back {
+  margin: 2rem 0 -1.5rem;
+  font-size: 0.9rem;
+}
+
+// ---------------------------------------------------------------------------
+// Publications (markup from _layouts/bib.html, wrapped by jekyll-scholar)
+// ---------------------------------------------------------------------------
+
+h2.bibliography {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--muted);
+  margin: 2rem 0 0.5rem;
+}
+
+ol.bibliography {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  > li {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border);
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}
+
+.pub {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 1.25rem;
+}
+
+.pub-thumb {
+  width: 120px;
+  height: 84px;
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  span {
+    color: var(--muted);
+    font-weight: 600;
+    font-size: 0.85rem;
+  }
+}
+
+.pub-title {
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.pub-authors {
+  font-size: 0.92rem;
+  margin-top: 0.2rem;
+  .me {
+    color: var(--me);
+    font-weight: 600;
+  }
+}
+
+.pub-venue {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-top: 0.15rem;
+}
+
+.pub-extra {
+  margin-top: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.88rem;
+
+  p {
+    margin: 0;
+  }
+  pre {
+    margin: 0;
+    font-size: 0.78rem;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+}
+
+@media (max-width: $mobile) {
+  .pub {
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+  }
+  .pub-thumb {
+    display: none;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Projects
+// ---------------------------------------------------------------------------
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  h3 {
+    margin: 0 0 0.2rem;
+    font-size: 1.05rem;
+    a {
+      color: var(--text);
+    }
+  }
+  p {
+    font-size: 0.92rem;
+    margin: 0.6rem 0 0;
+  }
+  .links {
+    margin-top: auto;
+    padding-top: 0.9rem;
+  }
+}
+
+.card-img {
+  height: 160px;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  &.contain img {
+    object-fit: contain;
+    padding: 1rem;
+  }
+}
+
+.card-body {
+  padding: 1rem 1.1rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.project-figure {
+  margin: 0 0 2rem;
+  img {
+    display: block;
+    max-height: 360px;
+    margin: 0 auto;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+  }
+}
+
+@media (max-width: $mobile) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// CV / teaching entries
+// ---------------------------------------------------------------------------
+
+.entries {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  > li {
+    padding: 0.6rem 0;
+  }
+  ul {
+    margin: 0.3rem 0 0;
+    padding-left: 1.2rem;
+    font-size: 0.93rem;
+  }
+  p {
+    margin: 0.3rem 0 0;
+    font-size: 0.93rem;
+  }
+}
+
+.entry-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+
+  strong {
+    font-weight: 600;
+  }
+  strong a {
+    color: var(--text);
+  }
+  .years {
+    color: var(--muted);
+    font-size: 0.88rem;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+.plain {
+  padding-left: 1.2rem;
+  margin: 0;
+}
+
+.skills {
+  display: grid;
+  grid-template-columns: 9rem 1fr;
+  gap: 0.6rem 1rem;
+  margin: 0;
+
+  dt {
+    font-weight: 600;
+  }
+  dd {
+    margin: 0;
+    ul {
+      margin: 0;
+      padding-left: 1.1rem;
+    }
+  }
+}
+
+.cv .pub-thumb {
+  display: none;
+}
+
+.cv .pub {
+  grid-template-columns: 1fr;
+}
+
+@media (max-width: $mobile) {
+  .skills {
+    grid-template-columns: 1fr;
+    gap: 0.2rem;
+    dd {
+      margin-bottom: 0.6rem;
+    }
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Print (CV page prints cleanly in light colours)
+// ---------------------------------------------------------------------------
+
+@media print {
+  :root {
+    --bg: #fff;
+    --surface: #fff;
+    --surface-2: #fff;
+    --text: #000;
+    --muted: #444;
+    --accent: #000;
+    --border: #ccc;
+    --me: #000;
+  }
+  .site-header,
+  .site-footer,
+  .links,
+  .button {
+    display: none !important;
+  }
+}
+
+// Markdown rendered inline (news items, CV details): drop paragraph margins.
+.md p {
+  margin: 0;
+}

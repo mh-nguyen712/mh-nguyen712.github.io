@@ -1,0 +1,45 @@
+# Talks and posters. Used by the Publications page and the CV.
+# Fields: date (YYYY-MM or YYYY-MM-DD), type (Talk / Poster / Invited ...), title, event, event_url, location,
+#         slides / poster (file in assets/pdf/ or a full URL).
+
+- date: 2026-04
+  type: Talk
+  title: DeepInverse and Computational Imaging
+  event: PyTorch Conference Europe 2026
+  event_url: https://events.linuxfoundation.org/pytorch-conference-europe/program/schedule/
+  location: Paris, France
+
+- date: 2025-10
+  type: Talk
+  title: How diffusion prior landscapes shape the posterior in blind deconvolution
+  event: Blind inverse problems in imaging, from foundations to applications
+  location: Marseille, France
+
+- date: 2025-08
+  type: Talk
+  title: How diffusion prior landscapes shape the posterior in blind deconvolution
+  event: GRETSI 2025
+  event_url: https://gretsi.fr/colloque2025/
+  location: Strasbourg, France
+  slides: gretsi_2025.pdf
+
+- date: 2025-03-20
+  type: Talk
+  title: Blind deconvolution in optical microscopy
+  event: PhD Seminar, IRIT
+  location: Toulouse, France
+  slides: presentation_phd_seminar_irit_2025_deepblur.pdf
+
+- date: 2025-03
+  type: Poster
+  title: Deep learning-based blind deblurring in microscopy
+  event: "IABM 2025: Colloque Français d'Intelligence Artificielle en Imagerie Biomédicale"
+  event_url: https://iabm2025.sciencesconf.org/
+  location: Nice, France
+  poster: poster_iabm_2025.pdf
+
+- date: 2023-09-27
+  type: Talk
+  title: "DeepVibes: Correcting micro-vibrations in satellite imaging with pushbroom cameras"
+  event: 30 Years of Mathematics for Optical Imaging
+  location: Marseille, France

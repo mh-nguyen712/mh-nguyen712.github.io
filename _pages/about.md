@@ -1,23 +1,18 @@
 ---
-layout: about
-title: about
+layout: home
 permalink: /
-subtitle: <a href='#'>Last year PhD candidate</a>.
-
-profile:
-  align: right
-  image: avatar_2.jpeg
-  image_circular: true # crops the image to make it circular
-  more_info: >
-    <p>Office 2031</p>
-    <p>Centre de Biologie Intégrative</p>
-    <p>Toulouse, France</p>
-
-news: true # includes a list of news items
-selected_papers: false # includes a list of papers marked as "selected={true}"
-social: true # includes social icons at the bottom of the page
+title: About
+subtitle: PhD candidate in Applied Mathematics · University of Toulouse
+photo: avatar_2.jpeg
+address: |
+  Office 2031, Centre de Biologie Intégrative
+  Toulouse, France
 ---
 
-I'm currently a 3rd year PhD student in Image Processing and Applied Mathematics at the University of Toulouse, France.
-I'm under the supervision of [Prof. Pierre Weiss](https://www.math.univ-toulouse.fr/~weiss/) and [Prof. Edouard Pauwels](https://edouardpauwels.fr/).
-My research focuses on inverse problems and computational imaging, particularly for microscopy. I also explore diffusion models and actively contribute to open‑source software.
+I'm a third-year PhD student in image processing and applied mathematics at the University of Toulouse, France,
+supervised by [Prof. Pierre Weiss](https://www.math.univ-toulouse.fr/~weiss/) and [Prof. Edouard Pauwels](https://edouardpauwels.fr/).
+
+My research focuses on **inverse problems** and **computational imaging**, particularly for microscopy.
+I also work on diffusion models and actively contribute to open-source software, notably [DeepInverse](https://deepinv.github.io/deepinv/).
+
+Don't hesitate to reach out for collaborations or questions.

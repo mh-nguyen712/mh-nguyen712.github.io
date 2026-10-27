@@ -1,0 +1,21 @@
+{% assign p = include.project %} {% assign has_page = p.content | strip | size %} {% assign fit = "" %} {% if p.image_fit == "contain" %}{% assign fit
+= "contain" %}{% endif %}
+<article class="card">
+  {% if p.image %}
+  <div class="card-img {{ fit }}"><img src="{{ p.image | prepend: '/assets/img/' | relative_url }}" alt="{{ p.title }}" loading="lazy" /></div>
+  {% endif %}
+  <div class="card-body">
+    {% if has_page > 0 %}
+    <h3><a href="{{ p.url | relative_url }}">{{ p.title }}</a></h3>
+    {% else %}
+    <h3>{{ p.title }}</h3>
+    {% endif %}
+    <div class="meta">{{ p.role }}{% if p.role and p.years %} · {% endif %}{{ p.years }}</div>
+    <p>{{ p.summary }}</p>
+    <div class="links">
+      {% for link in p.links %}
+      <a class="pill" href="{{ link.url | relative_url }}">{{ link.name }}</a>
+      {% endfor %} {% if has_page > 0 %}<a class="pill pill-accent" href="{{ p.url | relative_url }}">More →</a>{% endif %}
+    </div>
+  </div>
+</article>

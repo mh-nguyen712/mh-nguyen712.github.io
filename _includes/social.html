@@ -1,0 +1,29 @@
+{% assign a = site.author %}
+<ul class="social">
+  {% if a.email %}
+  <li>
+    <a href="mailto:{{ a.email }}" title="Email"><i class="fa-solid fa-envelope"></i><span>Email</span></a>
+  </li>
+  {% endif %} {% if a.scholar %}
+  <li>
+    <a href="https://scholar.google.com/citations?user={{ a.scholar }}" title="Google Scholar"
+      ><i class="fa-brands fa-google-scholar"></i><span>Scholar</span></a
+    >
+  </li>
+  {% endif %} {% if a.github %}
+  <li>
+    <a href="https://github.com/{{ a.github }}" title="GitHub"><i class="fa-brands fa-github"></i><span>GitHub</span></a>
+  </li>
+  {% endif %} {% if a.linkedin %}
+  <li>
+    <a href="https://www.linkedin.com/in/{{ a.linkedin }}" title="LinkedIn"><i class="fa-brands fa-linkedin"></i><span>LinkedIn</span></a>
+  </li>
+  {% endif %} {% if a.orcid %}
+  <li>
+    <a href="https://orcid.org/{{ a.orcid }}" title="ORCID"><i class="fa-brands fa-orcid"></i><span>ORCID</span></a>
+  </li>
+  {% endif %}
+  <li>
+    <a href="{{ '/cv/' | relative_url }}" title="CV"><i class="fa-solid fa-file-lines"></i><span>CV</span></a>
+  </li>
+</ul>

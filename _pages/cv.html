@@ -1,0 +1,82 @@
+---
+title: Curriculum Vitae
+permalink: /cv/
+cv_pdf: cv2.pdf
+---
+
+{% assign cv = site.data.cv %}
+<div class="cv">
+  <p>
+    <a class="button" href="{{ page.cv_pdf | prepend: '/assets/pdf/' | relative_url }}"><i class="fa-solid fa-file-pdf"></i> Download PDF</a>
+  </p>
+
+  <h2 class="section-title">Summary</h2>
+  <ul class="plain">
+    {% for s in cv.summary %}
+    <li>{{ s }}</li>
+    {% endfor %}
+  </ul>
+
+  <h2 class="section-title">Education</h2>
+  {% include entries.html items=cv.education %}
+
+  <h2 class="section-title">Experience</h2>
+  {% include entries.html items=cv.experience %}
+
+  <h2 class="section-title">Projects</h2>
+  <ul class="entries">
+    {% assign projects = site.projects | sort: "order" %} {% for p in projects %} {% assign has_page = p.content | strip | size %}
+    <li>
+      <div class="entry-head">
+        <strong>{% if has_page > 0 %}<a href="{{ p.url | relative_url }}">{{ p.title }}</a>{% else %}{{ p.title }}{% endif %}</strong
+        ><span class="years">{{ p.years }}</span>
+      </div>
+      <div class="meta">{{ p.role }}</div>
+      <p>{{ p.summary }}</p>
+    </li>
+    {% endfor %}
+  </ul>
+
+  <h2 class="section-title">Publications</h2>
+  {% bibliography --group_by none %}
+
+  <h2 class="section-title">Talks & posters</h2>
+  {% include talks.html %}
+
+  <h2 class="section-title">Teaching</h2>
+  <ul class="entries">
+    {% for t in site.data.teaching %}
+    <li>
+      <div class="entry-head"><strong>{{ t.course }}</strong><span class="years">{{ t.years }}</span></div>
+      <div class="meta">{{ t.role }} · {{ t.institution }}{% if t.hours %} · {{ t.hours }}{% endif %}</div>
+    </li>
+    {% endfor %}
+  </ul>
+
+  <h2 class="section-title">Distinctions</h2>
+  <ul class="entries">
+    {% for d in cv.distinctions %}
+    <li>
+      <div class="entry-head"><span>{{ d.title }}</span><span class="years">{{ d.years }}</span></div>
+    </li>
+    {% endfor %}
+  </ul>
+
+  <h2 class="section-title">Skills</h2>
+  <dl class="skills">
+    {% for g in cv.skills %}
+    <dt>{{ g.name }}</dt>
+    <dd>
+      <ul>
+        {% for i in g.items %}
+        <li>{{ i }}</li>
+        {% endfor %}
+      </ul>
+    </dd>
+    {% endfor %}
+    <dt>Languages</dt>
+    <dd>{{ cv.languages }}</dd>
+    <dt>Interests</dt>
+    <dd>{{ cv.interests }}</dd>
+  </dl>
+</div>

@@ -1,0 +1,27 @@
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+{% if page.title and page.url != "/" %}
+<title>{{ page.title }} · {{ site.title }}</title>
+{% else %}
+<title>{{ site.title }}</title>
+{% endif %}
+<meta name="description" content="{{ page.description | default: site.description | strip_html | strip_newlines | strip }}" />
+<meta name="author" content="{{ site.author.name }}" />
+<link rel="canonical" href="{{ page.url | absolute_url }}" />
+<link
+  rel="icon"
+  href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚛️</text></svg>"
+/>
+
+<!-- Apply the saved theme before the page paints (dark is the default) -->
+<script>
+  try {
+    if (localStorage.getItem("theme") === "light") document.documentElement.dataset.theme = "light";
+  } catch (e) {}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+<link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}" />

@@ -1,0 +1,10 @@
+---
+title: Projects
+permalink: /projects/
+description: Research projects and open-source software I work on.
+---
+
+{% assign projects = site.projects | sort: "order" %}
+<div class="cards">{% for project in projects %} {% include project-card.html project=project %} {% endfor %}</div>
+
+<p class="muted">More code on <a href="https://github.com/{{ site.author.github }}">GitHub</a>.</p>
