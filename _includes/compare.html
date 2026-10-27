@@ -1,0 +1,30 @@
+{% comment %} Before/after image viewer with a draggable divider, zoom and pan. Usage (in any page or project): {% include compare.html id="demo"
+before="deepvibes/vibrated.webp" after="deepvibes/reconstruction.webp" before_label="Input" after_label="Output" focus="0.47,0.47" caption="..." %}
+Images are paths inside assets/img/. `focus` (optional, fractions of width,height) adds an "Inspect detail" button. {% endcomment %}
+<figure class="compare" id="{{ include.id | default: 'compare' }}" data-compare data-focus="{{ include.focus }}">
+  <div class="compare-stage" tabindex="0" aria-label="Image comparison. Use + and - to zoom, arrow keys to pan, 0 to reset.">
+    <div class="compare-layer">
+      <img src="{{ include.after | prepend: '/assets/img/' | relative_url }}" alt="{{ include.after_label }}" draggable="false" />
+    </div>
+    <div class="compare-layer compare-before">
+      <img src="{{ include.before | prepend: '/assets/img/' | relative_url }}" alt="{{ include.before_label }}" draggable="false" />
+    </div>
+    <span class="compare-label compare-label-before">{{ include.before_label }}</span>
+    <span class="compare-label compare-label-after">{{ include.after_label }}</span>
+    <div class="compare-divider" role="slider" tabindex="0" aria-label="Divider position" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+      <span class="compare-handle"><i class="fa-solid fa-left-right"></i></span>
+    </div>
+  </div>
+  <div class="compare-toolbar">
+    <button type="button" class="pill" data-action="zoom-out" aria-label="Zoom out"><i class="fa-solid fa-minus"></i></button>
+    <span class="compare-zoom" aria-live="polite">1.0×</span>
+    <button type="button" class="pill" data-action="zoom-in" aria-label="Zoom in"><i class="fa-solid fa-plus"></i></button>
+    {% if include.focus %}<button type="button" class="pill" data-action="focus">Inspect detail</button>{% endif %}
+    <button type="button" class="pill" data-action="reset">Reset</button>
+    <span class="compare-hint">Drag the divider · scroll or pinch to zoom · drag to pan</span>
+  </div>
+  {% if include.caption %}
+  <figcaption>{{ include.caption | markdownify }}</figcaption>
+  {% endif %}
+</figure>
+<script src="{{ '/assets/js/compare.js' | relative_url }}" defer></script>

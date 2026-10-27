@@ -14,7 +14,7 @@ layout: default
       {% endfor %}
     </div>
   </header>
-  {% if page.image %}
+  {% if page.image and page.show_image != false %}
   <figure class="project-figure"><img src="{{ page.image | prepend: '/assets/img/' | relative_url }}" alt="{{ page.title }}" /></figure>
   {% endif %}
   <div class="prose">{{ content }}</div>

@@ -44,7 +44,7 @@ Paste the BibTeX entry (from Google Scholar, arXiv, ...) into `_bibliography/pap
   website     = {https://...},
   slides      = {my_slides.pdf},       % file in assets/pdf/, or a full URL
   poster      = {my_poster.pdf},
-  html        = {demo.html},           % interactive demo in assets/html/, or a full URL
+  html        = {demo.html},           % demo: file in assets/html/, a site path like /projects/x/, or a URL
   bibtex_show = {true},                % adds a "BibTeX" button
 ```
 

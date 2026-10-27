@@ -828,3 +828,173 @@ ol.bibliography {
 .md p {
   margin: 0;
 }
+
+// ---------------------------------------------------------------------------
+// Before/after image viewer (_includes/compare.html, assets/js/compare.js)
+// ---------------------------------------------------------------------------
+
+.compare {
+  width: min(100%, 80vh); // keep the square viewer on screen in short windows
+  margin: 1.5rem auto 2rem;
+
+  figcaption {
+    margin-top: 0.6rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+    p {
+      margin: 0;
+    }
+  }
+}
+
+.compare-stage {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: #000;
+  cursor: ew-resize;
+  touch-action: pan-y; // vertical swipes still scroll the page at 1×
+  user-select: none;
+  -webkit-user-select: none;
+  outline: none;
+
+  &:focus-visible {
+    box-shadow: 0 0 0 2px var(--accent);
+  }
+}
+
+.compare.is-zoomed .compare-stage {
+  cursor: grab;
+  touch-action: none;
+}
+
+.compare.is-panning .compare-stage {
+  cursor: grabbing;
+}
+
+.compare-layer {
+  position: absolute;
+  inset: 0;
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    transform-origin: 0 0;
+    will-change: transform;
+    pointer-events: none;
+  }
+}
+
+.compare.is-pixelated .compare-layer img {
+  image-rendering: pixelated;
+}
+
+.compare.is-animating .compare-layer img {
+  transition: transform 0.35s ease;
+}
+
+.compare-label {
+  position: absolute;
+  top: 0.75rem;
+  z-index: 2;
+  padding: 0.2rem 0.55rem;
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(4px);
+  pointer-events: none;
+}
+
+.compare-label-before {
+  left: 0.75rem;
+}
+
+.compare-label-after {
+  right: 0.75rem;
+}
+
+.compare-divider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 3;
+  width: 2px;
+  margin-left: -1px;
+  background: #fff;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+  cursor: ew-resize;
+  outline: none;
+
+  // Wider invisible hit area for fingers.
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0 -14px;
+  }
+}
+
+.compare-handle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 2.4rem;
+  height: 2.4rem;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #fff;
+  color: #111;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+}
+
+.compare-divider:focus-visible .compare-handle {
+  box-shadow:
+    0 0 0 3px var(--accent),
+    0 2px 10px rgba(0, 0, 0, 0.45);
+}
+
+.compare-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.75rem;
+
+  .pill {
+    padding: 0.25rem 0.7rem;
+  }
+}
+
+.compare-zoom {
+  min-width: 3.2rem;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text);
+}
+
+.compare-hint {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+
+@media (max-width: $mobile) {
+  .compare-hint {
+    margin-left: 0;
+    width: 100%;
+  }
+}

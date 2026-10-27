@@ -2,8 +2,8 @@
 ---
 
 {% comment %} Template for one entry of _bibliography/papers.bib (used by jekyll-scholar). Supported custom fields: abbr, preview, pdf, code, website,
-html (demo), slides, poster, selected, bibtex_show. Local files: pdf/slides/poster → assets/pdf/, preview → assets/img/publication_preview/, html →
-assets/html/. {% endcomment %}
+html (demo: a file in assets/html/, a site path starting with /, or a URL), slides, poster, selected, bibtex_show. Local files: pdf/slides/poster →
+assets/pdf/, preview → assets/img/publication_preview/, html → assets/html/. {% endcomment %}
 <div class="pub" id="{{ entry.key }}">
   <div class="pub-thumb">
     {% if entry.preview %} {% assign src = entry.preview %} {% unless src contains "://" %}{% assign src = src | prepend:
@@ -43,8 +43,8 @@ assets/html/. {% endcomment %}
       >{% endif %} {% if entry.url and entry.eprint == nil and entry.doi == nil %}<a class="pill" href="{{ entry.url }}">Link</a>{% endif %} {% if
       entry.code %}<a class="pill" href="{{ entry.code }}">Code</a>{% endif %} {% if entry.website %}<a class="pill" href="{{ entry.website }}"
         >Website</a
-      >{% endif %} {% if entry.html %} {% assign href = entry.html %} {% unless href contains "://" %}{% assign href = href | prepend: "/assets/html/"
-      | relative_url %}{% endunless %}
+      >{% endif %} {% if entry.html %} {% assign href = entry.html %} {% assign first = href | slice: 0 %} {% unless href contains "://" or first ==
+      "/" %}{% assign href = href | prepend: "/assets/html/" %}{% endunless %} {% assign href = href | relative_url %}
       <a class="pill" href="{{ href }}">Demo</a>
       {% endif %} {% for kind in "slides,poster" | split: "," %} {% if entry[kind] %} {% assign href = entry[kind] %} {% unless href contains "://"
       %}{% assign href = href | prepend: "/assets/pdf/" | relative_url %}{% endunless %}
