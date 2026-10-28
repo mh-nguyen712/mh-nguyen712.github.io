@@ -107,4 +107,7 @@ _layouts/            default, page, home, project, bib (one publication), redire
 _includes/           header, footer, news, talks, project card, ...
 assets/css/main.scss the whole stylesheet (colours at the top; dark is the default)
 assets/js/site.js    theme toggle + abstract/BibTeX buttons
+assets/js/point-cloud.js         the animated background (diffusion between datasets, mouse interaction)
+assets/js/point-cloud-shapes.js  the datasets it cycles through; add a shape to the SHAPES list at the bottom
+assets/js/compare.js             before/after image viewer (_includes/compare.html)
 ```
