@@ -8,10 +8,10 @@
 <meta name="description" content="{{ page.description | default: site.description | strip_html | strip_newlines | strip }}" />
 <meta name="author" content="{{ site.author.name }}" />
 <link rel="canonical" href="{{ page.url | absolute_url }}" />
-<link
-  rel="icon"
-  href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚛️</text></svg>"
-/>
+<!-- Favicon: dot-matrix "H" (source: assets/img/favicon.svg; favicon.ico and the PNG are exported from it) -->
+<link rel="icon" href="{{ '/favicon.ico' | relative_url }}" sizes="48x48" />
+<link rel="icon" href="{{ '/assets/img/favicon.svg' | relative_url }}" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="{{ '/assets/img/apple-touch-icon.png' | relative_url }}" />
 
 <!-- Apply the saved theme before the page paints (dark is the default) -->
 <script>
