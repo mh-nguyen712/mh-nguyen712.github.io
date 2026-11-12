@@ -32,7 +32,9 @@
     <canvas id="point-cloud" aria-hidden="true"></canvas>
     <header class="site-header">
   <div class="container header-inner">
-    <a class="site-name" href="/">Minh Hai Nguyen</a>
+    <a class="site-name" href="/"
+      ><img class="site-logo" src="/assets/img/favicon.svg" alt="" width="22" height="22" />Minh Hai Nguyen</a
+    >
     <nav class="site-nav" aria-label="Main">
          
       <a href="/" aria-current="page" >About</a>
@@ -52,11 +54,12 @@
       </button>
     </nav>
   </div>
+  <div class="scroll-progress" aria-hidden="true"></div>
 </header>
 
     <main class="container"><section class="intro">
   <div class="intro-text">
-    <h1>Minh Hai Nguyen</h1>
+    <h1 data-decode aria-label="Minh Hai Nguyen">Minh Hai Nguyen</h1>
     
     <p class="subtitle">PhD candidate in Applied Mathematics · University of Toulouse</p>
     
@@ -100,7 +103,11 @@ I also work on diffusion models and actively contribute to open-source software,
 
   </div>
   <div class="intro-aside">
-    <img class="avatar" src="/assets/img/avatar_2.jpeg" alt="Photo of Minh Hai Nguyen" /> 
+    
+    <div class="avatar-ring">
+      <img class="avatar" src="/assets/img/avatar_2.jpeg" alt="Photo of Minh Hai Nguyen" />
+    </div>
+     
     <address>Office 2031, Centre de Biologie Intégrative<br />
 Toulouse, France<br />
 </address>
@@ -325,7 +332,10 @@ Toulouse, France<br />
 </section>
 </main>
     <footer class="site-footer">
-  <div class="container">© 2026 Minh Hai Nguyen · Built with <a href="https://jekyllrb.com/">Jekyll</a>, hosted on <a href="https://pages.github.com/">GitHub Pages</a>.</div>
+  <div class="container">
+    <span>© 2026 Minh Hai Nguyen · Built with <a href="https://jekyllrb.com/">Jekyll</a>, hosted on <a href="https://pages.github.com/">GitHub Pages</a>.</span>
+    <a class="to-top" href="#top">Back to top ↑</a>
+  </div>
 </footer>
 
     <script src="/assets/js/site.js" defer></script>
