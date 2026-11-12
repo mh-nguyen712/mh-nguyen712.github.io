@@ -10,8 +10,8 @@
       </div>
       {% if talk.slides or talk.poster %}
       <div class="links">
-        {% for kind in "slides,poster" | split: "," %} {% assign file = talk[kind] %} {% if file %} {% unless file contains "://" %}{% assign file =
-        file | prepend: "/assets/pdf/" | relative_url %}{% endunless %}
+        {% assign kinds = "slides,poster" | split: "," %} {% for kind in kinds %} {% assign file = talk[kind] %} {% if file %} {% unless file contains
+        "://" %}{% assign file = file | prepend: "/assets/pdf/" | relative_url %}{% endunless %}
         <a class="pill" href="{{ file }}">{{ kind | capitalize }}</a>
         {% endif %} {% endfor %}
       </div>

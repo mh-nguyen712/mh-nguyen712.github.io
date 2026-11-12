@@ -51,8 +51,8 @@ assets/pdf/, preview → assets/img/publication_preview/, html → assets/html/.
       >{% endif %} {% if entry.html %} {% assign href = entry.html %} {% assign first = href | slice: 0 %} {% unless href contains "://" or first ==
       "/" %}{% assign href = href | prepend: "/assets/html/" %}{% endunless %} {% assign href = href | relative_url %}
       <a class="pill" href="{{ href }}">Demo</a>
-      {% endif %} {% for kind in "slides,poster" | split: "," %} {% if entry[kind] %} {% assign href = entry[kind] %} {% unless href contains "://"
-      %}{% assign href = href | prepend: "/assets/pdf/" | relative_url %}{% endunless %}
+      {% endif %} {% assign kinds = "slides,poster" | split: "," %} {% for kind in kinds %} {% if entry[kind] %} {% assign href = entry[kind] %} {%
+      unless href contains "://" %}{% assign href = href | prepend: "/assets/pdf/" | relative_url %}{% endunless %}
       <a class="pill" href="{{ href }}">{{ kind | capitalize }}</a>
       {% endif %} {% endfor %} {% if entry.bibtex_show %}<button type="button" class="pill" data-toggle="bibtex-{{ entry.key }}">BibTeX</button>{%
       endif %}
