@@ -1,6 +1,12 @@
 # News items, newest first: add new entries at the top (they are shown in this order).
 # `text` is Markdown: links like [ICML 2026](https://icml.cc/) work.
 
+- date: 2026-11-05
+  text: >-
+    Gave a talk on "From analytic CNN surrogates to recovery guarantees for learned inverse-problem solvers" at the
+    [Workshop sur les mathématiques de l'IA](https://wmathsia2026.sciencesconf.org/) at the Institut de Mathématiques
+    de Bordeaux ([slides](/assets/pdf/presentation_wmathsia2026.pdf)).
+
 - date: 2026-09-21
   text: >-
     Gave a talk on "An analytic theory of convolutional neural network inverse problems solvers" at the

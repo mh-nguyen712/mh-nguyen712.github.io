@@ -2,6 +2,14 @@
 # Fields: date (YYYY-MM or YYYY-MM-DD), type (Talk / Poster / Invited ...), title, event, event_url, location,
 #         slides / poster (file in assets/pdf/ or a full URL).
 
+- date: 2026-11-05
+  type: Talk
+  title: From analytic CNN surrogates to recovery guarantees for learned inverse-problem solvers
+  event: Workshop sur les mathématiques de l'IA
+  event_url: https://wmathsia2026.sciencesconf.org/
+  location: IMB, Bordeaux, France
+  slides: presentation_wmathsia2026.pdf
+
 - date: 2026-09-21
   type: Talk
   title: An analytic theory of convolutional neural network inverse problems solvers
