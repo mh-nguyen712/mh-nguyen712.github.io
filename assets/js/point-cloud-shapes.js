@@ -1,7 +1,8 @@
 // Datasets for the point-cloud background (assets/js/point-cloud.js), shown in this order.
-// Each entry is { name, tilt, make(count) }: make returns a Float32Array of 3 * count coordinates, roughly inside the
-// unit ball. Screen y points DOWN, so "up" is -y. `tilt` (radians, optional) tips the shape toward the viewer, e.g. to
-// look down onto a height map. To add a shape, add an entry to SHAPES at the bottom.
+// Each entry is { name, tilt, color, make(count) }: make returns a Float32Array of 3 * count coordinates, roughly inside
+// the unit ball. Screen y points DOWN, so "up" is -y. `tilt` (radians, optional) tips the shape toward the viewer, e.g.
+// to look down onto a height map. `color(x, y, z)` (optional) returns the number each point is coloured by, on any
+// scale; the default is its height. To add a shape, add an entry to SHAPES at the bottom.
 window.PointCloudShapes = (() => {
   const TAU = 2 * Math.PI;
 
@@ -175,8 +176,31 @@ window.PointCloudShapes = (() => {
   }
 
   // ---------------------------------------------------------------------------
-  // Optics: Airy pattern and Zernike polynomials (wavefront aberrations)
+  // Optics: Gaussian beam, Airy pattern and Zernike polynomials (wavefront aberrations)
   // ---------------------------------------------------------------------------
+
+  // A focused Gaussian beam, w(y) = w0 sqrt(1 + (y / yR)^2): points drawn from its intensity (dense at the waist),
+  // inside its 1/e^2 envelope, a hyperboloid.
+  function gaussianBeam(count) {
+    const w0 = 0.1;
+    const rayleigh = 0.24;
+    const width = (y) => w0 * Math.sqrt(1 + (y / rayleigh) ** 2);
+    const out = new Float32Array(count * 3);
+    const shell = Math.floor(count * 0.4);
+    out.set(
+      grid(shell, 0.9, (u, v) => {
+        const y = 2 * v - 1;
+        return [width(y) * Math.cos(u * TAU), y, width(y) * Math.sin(u * TAU)];
+      })
+    );
+    for (let i = shell; i < count; i++) {
+      const y = Math.random() * 2 - 1;
+      const r = width(y) * Math.sqrt(-Math.log(1 - Math.random()) / 2);
+      const a = Math.random() * TAU;
+      out.set([r * Math.cos(a), y, r * Math.sin(a)], i * 3);
+    }
+    return normalize(out);
+  }
 
   // Bessel function J1 (rational/asymptotic approximation from Numerical Recipes).
   function besselJ1(x) {
@@ -253,8 +277,59 @@ window.PointCloudShapes = (() => {
   const monkeySaddle = (x, z) => x ** 3 - 3 * x * z * z;
 
   // ---------------------------------------------------------------------------
-  // Classic surfaces
+  // Classic curves and surfaces
   // ---------------------------------------------------------------------------
+
+  // Lorenz attractor (sigma = 10, rho = 28, beta = 8/3): one long trajectory, integrated with RK4.
+  function lorenz(count) {
+    const f = ([x, y, z]) => [10 * (y - x), x * (28 - z) - y, x * y - (8 / 3) * z];
+    const dt = 0.006;
+    let p = [0.1, 0, 0];
+    const advance = () => {
+      const k1 = f(p);
+      const k2 = f(p.map((v, d) => v + (dt / 2) * k1[d]));
+      const k3 = f(p.map((v, d) => v + (dt / 2) * k2[d]));
+      const k4 = f(p.map((v, d) => v + dt * k3[d]));
+      p = p.map((v, d) => v + (dt / 6) * (k1[d] + 2 * k2[d] + 2 * k3[d] + k4[d]));
+    };
+    for (let i = 0; i < 500; i++) advance(); // get onto the attractor
+    const out = new Float32Array(count * 3);
+    for (let i = 0; i < count; i++) {
+      advance();
+      out.set([p[0], -p[2], p[1]], i * 3);
+    }
+    return normalize(out);
+  }
+
+  // A DNA-like double helix: two strands (offset by less than half a turn, hence the two grooves) and the base pairs
+  // that join them.
+  function doubleHelix(count) {
+    const turns = 2.5;
+    const radius = 0.34;
+    const offset = 0.78 * Math.PI;
+    const pairs = 26;
+    const strand = Math.floor(count * 0.36);
+    const out = new Float32Array(count * 3);
+    for (let i = 0; i < count; i++) {
+      let s; // position along the axis, in [0, 1)
+      let x;
+      let z;
+      if (i < 2 * strand) {
+        s = Math.random();
+        const a = s * turns * TAU + (i % 2) * offset;
+        x = radius * Math.cos(a) + randn() * 0.012;
+        z = radius * Math.sin(a) + randn() * 0.012;
+      } else {
+        s = (Math.floor(Math.random() * pairs) + 0.5) / pairs;
+        const a = s * turns * TAU;
+        const u = Math.random();
+        x = radius * (Math.cos(a) + (Math.cos(a + offset) - Math.cos(a)) * u);
+        z = radius * (Math.sin(a) + (Math.sin(a + offset) - Math.sin(a)) * u);
+      }
+      out.set([x, (s - 0.5) * 2.3, z], i * 3);
+    }
+    return normalize(out);
+  }
 
   function mobiusStrip(count) {
     return normalize(
@@ -335,21 +410,24 @@ window.PointCloudShapes = (() => {
   // ---------------------------------------------------------------------------
 
   const SHAPES = [
-    { name: "swiss roll", make: swissRoll },
+    { name: "swiss roll", color: (x, y) => Math.hypot(x, y), make: swissRoll }, // coloured along the roll
     zernikeShape(3, 1, "zernike coma"),
     { name: "mobius strip", tilt: 0.3, make: mobiusStrip },
     { name: "rosenbrock", tilt: 0.5, make: (n) => square(n, rosenbrock, 0.8) },
-    { name: "neural network", make: neuralNetwork },
+    { name: "neural network", color: (x) => x, make: neuralNetwork }, // coloured by layer
     zernikeShape(2, 2, "zernike astigmatism"),
     { name: "klein bottle", make: kleinBottle },
+    { name: "lorenz attractor", tilt: 0.1, color: (x) => x, make: lorenz }, // one colour per wing
     { name: "himmelblau", tilt: 0.5, make: (n) => square(n, himmelblau, 0.8) },
     { name: "airy pattern", tilt: 0.1, make: airyPattern },
     zernikeShape(3, 3, "zernike trefoil"),
     { name: "trefoil knot", tilt: 0.2, make: trefoilKnot },
+    { name: "double helix", tilt: 0.15, make: doubleHelix },
     { name: "rastrigin", tilt: 0.55, make: (n) => square(n, rastrigin, 0.7) },
     { name: "gaussian mixture", make: gaussianMixture },
     zernikeShape(4, 0, "zernike spherical"),
     { name: "enneper surface", tilt: 0.3, make: enneper },
+    { name: "gaussian beam", tilt: 0.1, color: (x, y) => -Math.abs(y), make: gaussianBeam }, // brightest at the focus
     { name: "monkey saddle", tilt: 0.45, make: (n) => square(n, monkeySaddle, 0.9) },
     zernikeShape(4, 4, "zernike tetrafoil"),
     zernikeShape(4, 2, "zernike secondary astigmatism"),

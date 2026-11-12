@@ -4,7 +4,7 @@ layout: default
 
 <section class="intro">
   <div class="intro-text">
-    <h1>{{ site.author.name }}</h1>
+    <h1 data-decode aria-label="{{ site.author.name }}">{{ site.author.name }}</h1>
     {% if page.subtitle %}
     <p class="subtitle">{{ page.subtitle }}</p>
     {% endif %}
@@ -12,8 +12,11 @@ layout: default
     {% include social.html %}
   </div>
   <div class="intro-aside">
-    {% if page.photo %}<img class="avatar" src="{{ page.photo | prepend: '/assets/img/' | relative_url }}" alt="Photo of {{ site.author.name }}" />{%
-    endif %} {% if page.address %}
+    {% if page.photo %}
+    <div class="avatar-ring">
+      <img class="avatar" src="{{ page.photo | prepend: '/assets/img/' | relative_url }}" alt="Photo of {{ site.author.name }}" />
+    </div>
+    {% endif %} {% if page.address %}
     <address>{{ page.address | newline_to_br }}</address>
     {% endif %}
   </div>

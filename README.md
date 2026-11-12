@@ -106,8 +106,17 @@ _pages/              the pages (home, news, publications, projects, teaching, cv
 _layouts/            default, page, home, project, bib (one publication), redirect
 _includes/           header, footer, news, talks, project card, ...
 assets/css/main.scss the whole stylesheet (colours at the top; dark is the default)
-assets/js/site.js    theme toggle + abstract/BibTeX buttons
-assets/js/point-cloud.js         the animated background (diffusion between datasets, mouse interaction)
+assets/js/site.js    theme toggle, abstract/BibTeX buttons, scroll effects (progress bar, reveal, hover light)
+assets/js/point-cloud.js         the animated background (WebGL: diffusion between datasets, mouse interaction)
 assets/js/point-cloud-shapes.js  the datasets it cycles through; add a shape to the SHAPES list at the bottom
 assets/js/compare.js             before/after image viewer (_includes/compare.html)
 ```
+
+### Look and feel
+
+The colours are CSS variables at the top of `assets/css/main.scss`, once for the dark theme and once for the light one:
+`--accent` / `--accent-2` (the accent gradient), `--cloud-1` / `--cloud-2` / `--cloud-3` (the point cloud, from low to
+high), `--cloud-alpha` (its brightness), `--glow` / `--glow-2` (the colour fields behind the page) and `--grain`.
+
+The point cloud's point counts, timings and cursor behaviour are the constants at the top of
+`assets/js/point-cloud.js`. All animation is switched off for visitors who ask their system for reduced motion.
