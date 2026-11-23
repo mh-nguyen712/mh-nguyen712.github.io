@@ -8,7 +8,8 @@
 // small weight; a click or tap sends a ripple, and fast scrolling shakes a little noise back in. Points behind the
 // text column are dimmed so the text stays readable.
 //
-// Each visit gets one of the scenes, picked at random on the first page and kept while the visitor browses the site.
+// Each time someone arrives on the site (a new tab, a link from elsewhere, a reload) one of the scenes is picked at
+// random, never the same as last time; it stays while they move between pages of the site.
 // On localhost a small panel lets you switch scenes (for the rest of that visit). Colours come from CSS variables (assets/css/main.scss): --cloud-1/2/3 ("r, g, b" from low to
 // high values of each scene's colour coordinate), --cloud-alpha, and --cloud-blend (add | normal).
 (() => {
@@ -33,6 +34,7 @@
   const IN = 3.2; // seconds to condense the next one out of it
   const STATE_KEY = "point-cloud-scene"; // sessionStorage: carries the animation over to the next page
   const PICK_KEY = "point-cloud-pick"; // sessionStorage: the scene picked for this visit
+  const LAST_KEY = "point-cloud-last"; // localStorage: the scene shown last, not to be picked twice in a row
 
   // What every scene starts from; scenes and their variants override some of it.
   const DEFAULTS = {
@@ -779,13 +781,20 @@
     } catch (e) {}
   }
 
-  // A scene at random on the first page of a visit, then the same one on every page until the tab is closed.
+  // Keep the scene while the visitor moves between pages of the site; pick a new one, different from the last one
+  // shown, whenever they arrive (new tab, typed address, link from elsewhere, reload).
   function pickScene() {
     try {
       const saved = JSON.parse(sessionStorage.getItem(PICK_KEY));
-      if (saved && findScene(saved.scene)) return { scene: saved.scene, variant: saved.variant || 0 };
+      if (saved && findScene(saved.scene) && browsingWithin()) return { scene: saved.scene, variant: saved.variant || 0 };
     } catch (e) {}
-    const scene = SCENES[Math.floor(Math.random() * SCENES.length)];
+    let last = null;
+    try {
+      last = localStorage.getItem(LAST_KEY);
+    } catch (e) {}
+    const pool = SCENES.filter((s) => s.id !== last);
+    const choices = pool.length ? pool : SCENES;
+    const scene = choices[Math.floor(Math.random() * choices.length)];
     const variants = (scene.variants || []).length;
     const pick = { scene: scene.id, variant: variants ? Math.floor(Math.random() * variants) : 0 };
     savePick(pick);
@@ -795,7 +804,20 @@
   function savePick(pick) {
     try {
       sessionStorage.setItem(PICK_KEY, JSON.stringify(pick));
+      localStorage.setItem(LAST_KEY, pick.scene);
     } catch (e) {}
+  }
+
+  // Did this page open from another page of the site (a link, or back / forward), rather than as an arrival?
+  function browsingWithin() {
+    const nav = performance.getEntriesByType ? performance.getEntriesByType("navigation")[0] : null;
+    if (nav && nav.type === "reload") return false;
+    if (nav && nav.type === "back_forward") return true;
+    try {
+      return new URL(document.referrer).origin === location.origin;
+    } catch (e) {
+      return false; // no referrer: typed address, bookmark, new tab
+    }
   }
 
   function buildPanel() {

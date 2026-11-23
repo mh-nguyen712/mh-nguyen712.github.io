@@ -108,7 +108,7 @@ _includes/           header, footer, news, talks, project card, ...
 assets/css/main.scss the whole stylesheet (colours at the top; dark is the default)
 assets/js/site.js    theme toggle, abstract/BibTeX buttons, scroll effects (progress bar, reveal, hover light)
 assets/js/point-cloud.js         the animated background (WebGL engine: noise entrance, mouse interaction, demo panel)
-assets/js/point-cloud-scenes.js  the background scenes (ocean, network, dot grid); each visit gets one at random
+assets/js/point-cloud-scenes.js  the background scenes (ocean, network, dot grid); each arrival gets one at random
 assets/js/compare.js             before/after image viewer (_includes/compare.html)
 ```
 
