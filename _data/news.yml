@@ -1,6 +1,12 @@
 # News items, newest first: add new entries at the top (they are shown in this order).
 # `text` is Markdown: links like [ICML 2026](https://icml.cc/) work.
 
+- date: 2026-11-17
+  text: >-
+    Gave a talk on "From analytic CNN surrogates to recovery guarantees for learned inverse-problem solvers" at the
+    [Séminaire de Statistique et Optimisation](https://indico.math.cnrs.fr/event/16705/) of the Institut de
+    Mathématiques de Toulouse ([slides](/assets/pdf/presentation_so_imt2026.pdf)).
+
 - date: 2026-11-05
   text: >-
     Gave a talk on "From analytic CNN surrogates to recovery guarantees for learned inverse-problem solvers" at the
